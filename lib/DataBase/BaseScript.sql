@@ -13,7 +13,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `LocalTorrent`
 --
-
+CREATE DATABASE IF NOT EXISTS LocalTorrent DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE LocalTorrent;
 -- --------------------------------------------------------
 
 --
