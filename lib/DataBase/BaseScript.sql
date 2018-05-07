@@ -87,7 +87,8 @@ ALTER TABLE `Usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 ALTER TABLE `Torrent`
-  ADD FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
+  ADD CONSTRAINT FK_TorrentUsuario
+  FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
