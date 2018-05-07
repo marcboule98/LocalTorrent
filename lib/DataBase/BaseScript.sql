@@ -79,14 +79,15 @@ CREATE TABLE `Usuario` (
 --
 ALTER TABLE `Torrent`
   ADD PRIMARY KEY (`idTorrent`);
-ALTER TABLE `Torrent`
-  ADD FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
 
 --
 -- Indices de la tabla `Usuario`
 --
 ALTER TABLE `Usuario`
   ADD PRIMARY KEY (`idUsuario`);
+
+ALTER TABLE `Torrent`
+  ADD FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
