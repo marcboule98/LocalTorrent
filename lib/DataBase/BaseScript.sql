@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-05-2018 a las 08:14:39
+-- Tiempo de generación: 07-05-2018 a las 10:45:13
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 7.2.1
 
@@ -13,8 +13,10 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `LocalTorrent`
 --
+
 CREATE DATABASE IF NOT EXISTS LocalTorrent DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE LocalTorrent;
+
 -- --------------------------------------------------------
 
 --
@@ -78,17 +80,14 @@ CREATE TABLE `Usuario` (
 -- Indices de la tabla `Torrent`
 --
 ALTER TABLE `Torrent`
-  ADD PRIMARY KEY (`idTorrent`);
+  ADD PRIMARY KEY (`idTorrent`),
+  ADD KEY `FK_TorrentUsuario` (`idUsuario`);
 
 --
 -- Indices de la tabla `Usuario`
 --
 ALTER TABLE `Usuario`
   ADD PRIMARY KEY (`idUsuario`);
-
-ALTER TABLE `Torrent`
-  ADD CONSTRAINT FK_TorrentUsuario
-  FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -105,3 +104,13 @@ ALTER TABLE `Torrent`
 --
 ALTER TABLE `Usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `Torrent`
+--
+ALTER TABLE `Torrent`
+  ADD CONSTRAINT `FK_TorrentUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
