@@ -52,8 +52,7 @@ CREATE TABLE `Torrent` (
   `size` int(11) DEFAULT NULL,
   `calidad` int(11) NOT NULL,
   `idioma` varchar(255) NOT NULL,
-  `finalizado` int(1) NOT NULL DEFAULT '0',
-  FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`)
+  `finalizado` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -80,6 +79,8 @@ CREATE TABLE `Usuario` (
 --
 ALTER TABLE `Torrent`
   ADD PRIMARY KEY (`idTorrent`);
+ALTER TABLE `Torrent`
+  ADD FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`);
 
 --
 -- Indices de la tabla `Usuario`
