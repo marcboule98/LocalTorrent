@@ -46,12 +46,14 @@ CREATE TABLE `Estadisticas` (
 
 CREATE TABLE `Torrent` (
   `idTorrent` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
   `codigoTorrent` int(11) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `calidad` int(11) NOT NULL,
   `idioma` varchar(255) NOT NULL,
-  `finalizado` int(1) NOT NULL DEFAULT '0'
+  `finalizado` int(1) NOT NULL DEFAULT '0',
+  FOREIGN KEY (`idUsuario`) REFERENCES Usuario(`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
