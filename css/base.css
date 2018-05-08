@@ -105,7 +105,6 @@ h1 {
 	height: 100%;
 	padding: 0px 20px;
 	overflow: auto;
-	text-align: center;
 	margin: 0px auto;
 }
 
@@ -151,6 +150,55 @@ input[type=text] {
 	border-bottom: 1px solid #a65992;
 }
 
+.customCheckBox > input[type=checkbox] {
+	position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.customCheckBox > span.customCheck {
+	position: absolute;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: 2px solid #a65992;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.customCheckBox > p {
+	margin: 5px;
+    margin-left: 40px;
+}
+
+.customCheckBox:hover > span.customCheck {
+	background-color: rgba(166, 89, 146, 0.1);
+}
+
+.customCheckBox > span.customCheck > i.fa {
+	font-size: 1.5em;
+	display: none;
+	color: white;
+}
+
+.customCheckBox > input[type=checkbox]:checked + span.customCheck {
+	background: #a65992;
+}
+
+.customCheckBox > input[type=checkbox]:checked + span.customCheck > i.fa {
+	display: block;
+}
+
+input[type=submit] {
+	font-size: 1.5em;
+    color: white;
+    background: #a65992;
+    border: none;
+    margin-top: 40px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
 @media screen and (max-device-width: 414px) {
 	.sideMenu {
 		display: none;
@@ -179,5 +227,22 @@ input[type=text] {
 
 	p {
 		font-size: 2em;
+	}
+
+	.customCheckBox > p {
+    	margin-left: 60px;
+	}
+
+	.customCheckBox > span.customCheck {
+		width: 40px;
+		height: 40px;
+	}
+
+	.customCheckBox > span.customCheck > i.fa {
+		font-size: 2.5em;
+	}
+
+	input[type=submit] {
+		font-size: 2.5em;
 	}
 }

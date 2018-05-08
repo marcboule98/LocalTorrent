@@ -7,7 +7,7 @@ class Utils {
 	 * @return String
 	 */
 	public static function addArchivoNoCache($url) {
-		return ( file_exists(BASE_PATH . $url) ? ($url . "?v=" . filemtime(BASE_PATH . $url)) : $url );
+		return ( file_exists($url) ? ($url . "?v=" . filemtime($url)) : $url );
 	}
 }
 

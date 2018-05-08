@@ -10,9 +10,11 @@
 	<?php require_once 'includes/sideMenu.php'; ?>
 
 	<div class="container">
-		<h1>Buscar Contenido</h1>
+		<h1>Nuevo Contenido</h1>
 
-		<input type="text" id="search" placeholder="Buscar"><br>
+		<input type="text" id="search" placeholder="Buscar">
+
+		
 	</div>
 </body>
 </html>

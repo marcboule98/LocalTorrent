@@ -1,35 +1,33 @@
 <?php
 /* DEFINES */
-define("BASE_PATH", $_SERVER["DOCUMENT_ROOT"] . "/localtorrent/");
+define("BASE_PATH", __DIR__ . "/");
 
 /* INCLUDES */
-$dir = BASE_PATH . "lib/";
-
-$files = glob($dir . 'Utils/*.php');
+$files = glob(BASE_PATH . 'Utils/*.php');
 
 foreach ($files as $file) {
     require_once $file;
 }
 
-$files = glob($dir . 'ValueObject/*.php');
+$files = glob(BASE_PATH . 'ValueObject/*.php');
 
 foreach ($files as $file) {
     require_once $file;
 }
 
-$files = glob($dir . 'Dao/*.php');
+$files = glob(BASE_PATH . 'Dao/*.php');
 
 foreach ($files as $file) {
     require_once $file;
 }
 
-$files = glob($dir . 'Gestor/*.php');
+$files = glob(BASE_PATH . 'Gestor/*.php');
 
 foreach ($files as $file) {
     require_once $file;
 }
 
-$files = glob($dir . 'Controlador/*.php');
+$files = glob(BASE_PATH . 'Controlador/*.php');
 
 foreach ($files as $file) {
     require_once $file;

@@ -39,5 +39,6 @@ div.item:hover {
 
 	div.item > p {
 		font-size: 2.5em;
+		padding: 20px;
 	}
 }

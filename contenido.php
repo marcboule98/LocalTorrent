@@ -12,7 +12,7 @@
 	<div class="container">
 		<h1>Ver contenido</h1>
 
-		<input type="text" id="search" placeholder="Buscar"><br>
+		<input type="text" id="search" placeholder="Buscar">
 
 		<div class="item">
 			<img src="test.jpg">
