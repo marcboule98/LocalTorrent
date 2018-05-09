@@ -16,7 +16,7 @@ class Utils {
 	 * @param Integer $size 
 	 * @return Integer
 	 */
-	public static function addArchivoNoCache($tipo, $size) {
+	public static function convertirKB($tipo, $size) {
 		$tipo = str_replace(',', '.', $tipo);
 		$tipos = array(
 			"GB" => 1000000,
