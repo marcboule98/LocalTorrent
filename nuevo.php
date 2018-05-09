@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Nuevo Contenido</title>
+	<title>Nuevo Contenido - LocalTorrent</title>
 	<?php require_once 'includes/header.php'; ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo Utils::addArchivoNoCache("css/nuevo.css"); ?>">
 </head>

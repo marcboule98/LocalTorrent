@@ -3,7 +3,7 @@
 	<hr>
 	<ul>
 		<li>
-			<a href="/">
+			<a href="inicio.php">
 				<i class="fa fa-home" aria-hidden="true"></i>Inicio
 			</a>
 		</li>
@@ -42,7 +42,7 @@
 <div class="sideMenuResponsive">
 	<ul>
 		<li>
-			<a href="/">
+			<a href="inicio.php">
 				<i class="fa fa-home" aria-hidden="true"></i>
 			</a>
 		</li>

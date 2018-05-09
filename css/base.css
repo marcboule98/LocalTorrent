@@ -45,6 +45,7 @@ h1 {
     padding: 5px;
     vertical-align: sub;
     cursor: pointer;
+    margin-left: -1px;
 }
 
 .sideMenu > ul, .sideMenuResponsive > ul {
@@ -130,7 +131,7 @@ input[type=text] {
 	padding: 7px 0px;
 	font-size: 1.5em;
 	outline: none;
-	color: #a65992;
+	color: black;
 	border-top: none;
 	border-left: none;
 	border-right: none;
@@ -163,7 +164,6 @@ input[type=text] {
     background-color: white;
     border: 2px solid #a65992;
     transition: all 0.2s;
-    cursor: pointer;
 }
 
 .customCheckBox > p {
@@ -189,14 +189,27 @@ input[type=text] {
 	display: block;
 }
 
+label.customCheckBox {
+	position: relative;
+}
+
 input[type=submit] {
 	font-size: 1.5em;
     color: white;
     background: #a65992;
     border: none;
-    margin-top: 40px;
     padding: 10px 30px;
     cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.groupInput > * {
+	display: inherit;
+}
+
+.groupInput > label {
+	padding-bottom: 10px;
+	font-size: 1.1em;
 }
 
 @media screen and (max-device-width: 414px) {
@@ -225,6 +238,10 @@ input[type=submit] {
 		font-size: 5em;
 	}
 
+	h2 {
+		font-size: 2.5em;
+	}
+
 	p {
 		font-size: 2em;
 	}
@@ -244,5 +261,10 @@ input[type=submit] {
 
 	input[type=submit] {
 		font-size: 2.5em;
+	}
+
+	.groupInput > label {
+		font-size: 2em;
+		padding-bottom: 15px;
 	}
 }

@@ -1,0 +1,48 @@
+table {
+	width: 100%;
+	height: auto;
+	border-collapse: collapse;
+	font-size: 1.1em;
+}
+
+table th, table td {
+	text-align: left;
+	padding: 10px 0px;
+	border-bottom: 1px solid rgba(166, 89, 146, 0.5);
+}
+
+table th:last-child, table td:last-child, table td:nth-child(3), table th:nth-child(3) {
+	text-align: right;
+}
+
+table td:last-child {
+	color: red;
+}
+
+table td:first-child {
+	max-width: 150px;
+}
+
+.progressBarContainer {
+	width: 0%;
+    height: auto;
+    text-align: center;
+    border-radius: 2px;
+    border: none;
+}
+
+.activo {
+	background-color: rgba(166, 89, 146, 0.5);
+	color: black;
+}
+
+.acabado {
+	background-color: #68385b;
+	color: white;
+}
+
+@media screen and (max-device-width: 414px) {
+	table {
+		font-size: 1.8em;
+	}
+}
