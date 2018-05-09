@@ -36,7 +36,7 @@ Class MejorTorrent {
 
 	private function obtenerUrlBuena($prevUrl) {
 		$html = file_get_html($prevUrl);
-		$info = array();
+		$info = array("size" => "", "link" => "");
 
 		foreach($html->find('a') as $element) {
 			if (strpos($element->href, "link_bajar") !== false) {
@@ -53,9 +53,12 @@ Class MejorTorrent {
 		}
 
 		foreach($html->find('table', 14)->find('tbody > tr > td > text') as $element) {
-			if (strpos($element->plaintext, "GB") !== false || strpos($element->plaintext, "MB") !== false) {
-				$info['size'] = preg_replace('/\s|&nbsp;/', '', $element->plaintext);
-				$info['size'] = preg_replace('/\s+/', '', $info["size"]);
+			if (strpos($element->plaintext, "GB") !== false) {
+				$info['size'] = str_replace('GB', '', $element->plaintext);	
+				$info['size'] = Utils::convertirKB('GB', $info['size']);
+			} else if(strpos($element->plaintext, "MB") !== false) {
+				$info['size'] = str_replace('MB', '', $element->plaintext);
+				$info['size'] = Utils::convertirKB('MB', $info['size']);
 			}
 		}
 
