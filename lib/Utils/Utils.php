@@ -17,13 +17,27 @@ class Utils {
 	 * @return Integer
 	 */
 	public static function convertirKB($tipo, $size) {
-		$tipo = str_replace(',', '.', $tipo);
+		$size = str_replace(',', '.', $size);
+		$size = Utils::eliminarCaracteresEspeciales($size);
+
 		$tipos = array(
 			"GB" => 1000000,
 			"MB" => 1000
 		);
+		
+		return $size * $tipos[$tipo];
+	}
 
-		return $tipo * $tipos[$tipo];
+	/**
+	 * Eliminar caracteres especiales.
+	 * @param String $string 
+	 * @return String
+	 */
+	public static function eliminarCaracteresEspeciales($string) {
+		$string = preg_replace("/\s|&nbsp;/", '', $string);
+		$string = preg_replace("/\s/", '', $string);
+
+		return $string;
 	}
 }
 
