@@ -36,7 +36,7 @@
 	  		
 	  		<div class="groupInput">
 	  			<label>Password</label>
-	  			<input type="text" name="password" placeholder="Contraseña">
+	  			<input type="password" name="password" placeholder="Contraseña">
 	  		</div>
 
 			<input type="submit" value="Guardar">

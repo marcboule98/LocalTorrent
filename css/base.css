@@ -125,7 +125,7 @@ h1 {
 	float: right;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
 	width: 85%;
 	text-indent: 10px;
 	padding: 7px 0px;
