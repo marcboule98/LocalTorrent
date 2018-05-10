@@ -1,15 +1,19 @@
 <?php
-Class ConfiguracionCtl {
+Class ConfiguracionCtl extends BaseCtl {
 
 	private $configuracionVO = null;
 	private $gestor = null;
 
 	public function __construct() {
-		$this->getConfiguracionVO();
+		try {
+			$this->getConfiguracionVO();
 
-		if(isset($_POST["guardar"])) {
-			$this->parseValueObject();
-			$this->getGestor()->update($this->getConfiguracionVO());
+			if(isset($_POST["guardar"])) {
+				$this->parseValueObject();
+				$this->getGestor()->update($this->getConfiguracionVO());
+			}
+		} catch (Exception $e) {
+			$this->errors[] = $e->getMessage();
 		}
 	}
 
@@ -56,7 +60,13 @@ Class ConfiguracionCtl {
 
 		$stringDataBase = "host=". $this->getConfiguracionVO()->getHost() ."\nusuario=". $this->getConfiguracionVO()->getUsuario() ."\npassword=". $this->getConfiguracionVO()->getPassword();
 
-		file_put_contents(BASE_PATH . 'Database/DBConfig.txt', $stringDataBase);
+		$connTemp = new mysqli($this->getConfiguracionVO()->getHost(), $this->getConfiguracionVO()->getUsuario(), $this->getConfiguracionVO()->getPassword(), "LocalTorrent");
+
+		if($connTemp->connect_error) {
+			throw new Exception("Error de conexion: " . $connTemp->connect_error);
+		} else {
+			file_put_contents(BASE_PATH . 'Database/DBConfig.txt', $stringDataBase);
+		}
 	}
 }
 ?>

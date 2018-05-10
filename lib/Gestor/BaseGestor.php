@@ -54,7 +54,9 @@ Class BaseGestor {
 				}
 			}
 
-			$this->conn = new mysqli($this->host, $this->usuario, $this->password, "LocalTorrent");
+			if(is_null($this->conn)) {
+				$this->conn = new mysqli($this->host, $this->usuario, $this->password, "LocalTorrent");
+			}
 
 			if ($this->conn->connect_error) {
     			throw new Exception("Error de conexion: " . $this->conn->connect_error);

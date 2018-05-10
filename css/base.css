@@ -212,6 +212,17 @@ input[type=submit] {
 	font-size: 1.1em;
 }
 
+div.error {
+	width: 90%;
+	border-left: 5px solid #F44336;
+	font-size: 1.1em;
+	padding: 5px 10px;
+	margin-top: 10px;
+	box-shadow: 0px 0px 1px 1px lightgrey;
+	border-radius: 2px;
+	text-align: justify;
+}
+
 @media screen and (max-device-width: 414px) {
 	.sideMenu {
 		display: none;
@@ -266,5 +277,11 @@ input[type=submit] {
 	.groupInput > label {
 		font-size: 2em;
 		padding-bottom: 15px;
+	}
+
+	div.error {
+		font-size: 2em;
+		border-left: 10px solid #F44336;
+		padding: 15px;
 	}
 }
