@@ -4,17 +4,41 @@ Class EliteTorrent {
 	public function __construct() { }
 
 	public function obtenerTorrents($nombre) {
-		return $this->parseTorrents($nombre);
+		return $this->obtenerNpaginas($nombre);
 	}
 	
-	private function parseTorrents($nombre) {
+	private function parseTorrents($nombre) {}
+
+	private function obtenerIdioma($idioma){
+		if (strpos($idioma, "Español Latino") !== false) {
+			return "ESPL";
+		} else if(strpos($idioma, "Español Castellano") !== false){
+			return "ESP";
+		} else if(strpos($idioma, "Ingles") !== false){
+			return "ENG";
+		} else if(strpos($idioma, "VOSE") !== false) {
+			return "VOSE";	
+		}
+		
+		return "-";
+	}
+
+	private function obtenerNpaginas($nombre){
+		$html = file_get_html('https://www.elitetorrent.biz/?s='.$nombre);
+		$paginacion = $html->find('div.paginacion')[0]->last_child()->attr["href"];
+		$totalPaginas = explode("/", $paginacion)[4];
+		
+		return $totalPaginas;
+	}
+
+	private function obtenerResultados($numPag,$nombre){
 		$ret = array("EliteTorrent" => array());
-		$url = 'https://www.elitetorrent.biz/?s=' . $nombre;
+		$url = 'https://www.elitetorrent.biz/page/'.$numPag.'/?s=' . $nombre;
 		$html = file_get_html($url);
 
 		foreach ($html->find('div.imagen') as $key) {
 			$tempArray = array(
-				"nombre" => $key->children(0)->attr["title"],
+				"nombre" => $key->children(0)->children(0)->attr["title"],
 				"size" => "",
 				"calidad" => "",
 				"idioma" => "-"
@@ -37,23 +61,11 @@ Class EliteTorrent {
 
 			$url = $key->children(0)->attr["href"];
 			$tempArray["url"] = "http://www.elitetorrent.biz".file_get_html($url)->find("a.enlace_torrent")[0]->attr["href"];
-			
+
 			array_push($ret['EliteTorrent'], $tempArray);
 		}
 
 		return $ret;
-	}
-
-	private function obtenerIdioma($idioma){
-		if (strpos($idioma, "Español Latino") !== false) {
-			return "ESPL";
-		} else if(strpos($idioma, "Español Castellano") !== false){
-			return "ESP";
-		} else if(strpos($idioma, "Ingles") !== false){
-			return "ENG";
-		} else if(strpos($idioma, "VOSE") !== false)
-			return "VOSE";
-		return "-";
 	}
 
 }

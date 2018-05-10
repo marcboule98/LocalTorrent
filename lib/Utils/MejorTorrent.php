@@ -13,7 +13,7 @@ Class MejorTorrent {
 		$html = file_get_html($url);
 
 		foreach($html->find('table', 15)->find('tbody > tr') as $tr) {
-			if ($tr->children(1)->plaintext == "Película" && !is_null($tr->children(1))) {
+			if (!is_null($tr->children(1) && $tr->children(1)->plaintext == "Película")) {
 				$tempArray = array(
 					"nombre" => $tr->children(0)->children(0)->plaintext,
 					"size" => "",
