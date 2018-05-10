@@ -19,7 +19,7 @@
 		</li>
 		<hr>
 		<li>
-			<a href="ajustes.php">
+			<a href="configuracion.php">
 				<i class="fa fa-cog" aria-hidden="true"></i>Ajustes
 			</a>
 		</li>
@@ -58,7 +58,7 @@
 		</li>
 		<hr>
 		<li>
-			<a href="ajustes.php">
+			<a href="configuracion.php">
 				<i class="fa fa-cog" aria-hidden="true"></i>
 			</a>
 		</li>
