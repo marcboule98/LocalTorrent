@@ -40,8 +40,30 @@ $ctl = new ConfiguracionCtl();
 	  		</div>
 	  		
 	  		<div class="groupInput">
-	  			<label>Password</label>
+	  			<label>Contraseña</label>
 	  			<input type="password" name="password" placeholder="Contraseña" value="<?php echo $ctl->getConfiguracionVO()->getPassword(); ?>">
+	  		</div>
+
+	  		<br><h2>Configuracion Transmission</h2>
+
+	  		<div class="groupInput">
+	  			<label>Host</label>
+	  			<input type="text" name="transmissionHost" placeholder="Host" value="<?php echo $ctl->getConfiguracionVO()->getTransmissionHost(); ?>">	
+	  		</div>
+	  		
+	  		<div class="groupInput">
+	  			<label>Puerto</label>
+	  			<input type="text" name="transmissionPuerto" placeholder="Puerto" value="<?php echo $ctl->getConfiguracionVO()->getTransmissionPuerto(); ?>">
+	  		</div>
+
+	  		<div class="groupInput">
+	  			<label>Usuario</label>
+	  			<input type="text" name="transmissionUsuario" placeholder="Usuario" value="<?php echo $ctl->getConfiguracionVO()->getTransmissionUsuario(); ?>">
+	  		</div>
+	  		
+	  		<div class="groupInput">
+	  			<label>Contraseña</label>
+	  			<input type="password" name="transmissionPassword" placeholder="Contraseña" value="<?php echo $ctl->getConfiguracionVO()->getTransmissionPassword(); ?>">
 	  		</div>
 
 			<input type="submit" name="guardar" value="Guardar">

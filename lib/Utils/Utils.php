@@ -37,6 +37,10 @@ class Utils {
 		$string = preg_replace("/\s|&nbsp;/", '', $string);
 		$string = preg_replace("/\s/", '', $string);
 
+		if(empty($string)) {
+			$string = NULL;
+		}
+
 		return $string;
 	}
 }

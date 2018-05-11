@@ -59,11 +59,11 @@ Class BaseGestor {
 			}
 
 			if ($this->conn->connect_error) {
-    			throw new Exception("Error de conexion: " . $this->conn->connect_error);
+    			throw new Exception("<b>Error de conexion:</b> " . $this->conn->connect_error);
 			}
 
 		} else {
-			throw new Exception("No se puede encontrar la configuracion de la Base de Datos");
+			throw new Exception("<b>No se puede encontrar la configuracion de la Base de Datos<b>");
 		}
 	}
 }

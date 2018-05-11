@@ -1,4 +1,8 @@
 <?php
+require_once BASE_PATH.'/../includes/vendor/autoload.php';
+use Transmission\Client;
+use Transmission\Transmission;
+
 Class ConfiguracionCtl extends BaseCtl {
 
 	private $configuracionVO = null;
@@ -44,6 +48,40 @@ Class ConfiguracionCtl extends BaseCtl {
 			$this->getConfiguracionVO()->setRecibirEmailFinalizados(0);
 		}
 
+		$this->parseTransmission();
+		$this->parseDatabase();
+		
+	}
+
+	private function parseTransmission() {
+		if(isset($_POST["transmissionHost"])) {
+			$this->getConfiguracionVO()->setTransmissionHost(Utils::eliminarCaracteresEspeciales($_POST["transmissionHost"]));
+		}
+
+		if(isset($_POST["transmissionPuerto"])) {
+			$this->getConfiguracionVO()->setTransmissionPuerto(Utils::eliminarCaracteresEspeciales($_POST["transmissionPuerto"]));
+		}
+
+		if(isset($_POST["transmissionUsuario"])) {
+			$this->getConfiguracionVO()->setTransmissionUsuario(Utils::eliminarCaracteresEspeciales($_POST["transmissionUsuario"]));
+		}
+
+		if(isset($_POST["transmissionPassword"])) {
+			$this->getConfiguracionVO()->setTransmissionPassword(Utils::eliminarCaracteresEspeciales($_POST["transmissionPassword"]));
+		}
+
+		$transmission = new Transmission($this->getConfiguracionVO()->getTransmissionHost(), $this->getConfiguracionVO()->getTransmissionPuerto());
+
+		if(!empty($_POST["transmissionUsuario"]) && $_POST["transmissionPassword"]) {
+			$client = new Client();
+			$client->authenticate($this->getConfiguracionVO()->getTransmissionUsuario(), $this->getConfiguracionVO()->getTransmissionPassword());
+			$transmission->setClient($client);
+		}
+
+		$transmission->all();
+	}
+
+	private function parseDatabase() {
 		if(isset($_POST["host"])) {
 			$this->getConfiguracionVO()->setHost(Utils::eliminarCaracteresEspeciales($_POST["host"]));
 		}
@@ -63,7 +101,7 @@ Class ConfiguracionCtl extends BaseCtl {
 		$connTemp = new mysqli($this->getConfiguracionVO()->getHost(), $this->getConfiguracionVO()->getUsuario(), $this->getConfiguracionVO()->getPassword(), "LocalTorrent");
 
 		if($connTemp->connect_error) {
-			throw new Exception("Error de conexion: " . $connTemp->connect_error);
+			throw new Exception("<b>Error al guardar la conexion:</b> " . $connTemp->connect_error);
 		} else {
 			file_put_contents(BASE_PATH . 'Database/DBConfig.txt', $stringDataBase);
 		}

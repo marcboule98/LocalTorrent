@@ -26,7 +26,7 @@ Class GestorConfiguracion extends BaseGestor {
 				}
 			}
 		} else {
-			throw new Exception("No se puede encontrar la configuracion de la Base de Datos");
+			throw new Exception("<b>No se puede encontrar la configuracion de la Base de Datos<b>");
 		}
 
 		return $valueObject;

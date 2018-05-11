@@ -25,8 +25,14 @@ USE LocalTorrent;
 
 CREATE TABLE `Configuracion` (
   `rutaDescargas` varchar(500) DEFAULT NULL,
-  `recibirEmailFinalizados` int(1) NOT NULL DEFAULT '0'
+  `recibirEmailFinalizados` int(1) NOT NULL DEFAULT '0',
+  `host` varchar(250) DEFAULT 'localhost',
+  `puerto` int(10) DEFAULT '9091',
+  `usuario` varchar(250) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO Configuracion VALUES ();
 
 -- --------------------------------------------------------
 

@@ -240,7 +240,7 @@ div.error {
 		display: none;
 	}
 
-	input[type=text] {
+	input[type=text], input[type=password] {
 		width: 100%;
 		font-size: 3em;
 	}

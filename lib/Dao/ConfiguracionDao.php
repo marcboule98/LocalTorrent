@@ -11,6 +11,10 @@ Class ConfiguracionDao {
     		while($row = $result->fetch_assoc()) {
         		$valueObject->setRutaDescargas($row["rutaDescargas"]);
         		$valueObject->setRecibirEmailFinalizados($row["recibirEmailFinalizados"]);
+        		$valueObject->setTransmissionHost($row["host"]);
+        		$valueObject->setTransmissionPuerto($row["puerto"]);
+        		$valueObject->setTransmissionUsuario($row["usuario"]);
+        		$valueObject->setTransmissionPassword($row["password"]);
     		}
 		}
 
@@ -18,10 +22,10 @@ Class ConfiguracionDao {
 	}
 
 	public function update($conn, $valueObject) {
-		$sql = "UPDATE Configuracion SET rutaDescargas = '". $valueObject->getRutaDescargas() ."', recibirEmailFinalizados = ". $valueObject->getRecibirEmailFinalizados() ." ";
+		$sql = "UPDATE Configuracion SET rutaDescargas = '". $valueObject->getRutaDescargas() ."', recibirEmailFinalizados = ". $valueObject->getRecibirEmailFinalizados() .", host = '". $valueObject->getTransmissionHost() ."', puerto = ". $valueObject->getTransmissionPuerto() .", usuario = '". $valueObject->getTransmissionUsuario() ."', password = '". $valueObject->getTransmissionPassword() ."' ";
 
 		if (!$conn->query($sql)) {
-			throw new Exception("Error Update: " . $conn->error);
+			throw new Exception("<b>Error al guardar:</b> " . $conn->error);
 		}
 	}
 }

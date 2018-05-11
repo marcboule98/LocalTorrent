@@ -6,6 +6,10 @@ Class ConfiguracionVO {
 	private $host;
 	private $usuario;
 	private $password;
+	private $transmissionHost;
+	private $transmissionPuerto;
+	private $transmissionUsuario;
+	private $transmissionPassword;
 
 	public function getRutaDescargas() {
 		return $this->rutaDescargas;
@@ -45,6 +49,38 @@ Class ConfiguracionVO {
 
 	public function setPassword($inPassword) {
 		$this->password = $inPassword;
+	}
+
+	public function getTransmissionHost() {
+		return $this->transmissionHost;
+	}
+
+	public function setTransmissionHost($inTransmissionHost) {
+		$this->transmissionHost = $inTransmissionHost;
+	}
+
+	public function getTransmissionPuerto() {
+		return $this->transmissionPuerto;
+	}
+
+	public function setTransmissionPuerto($inTransmissionPuerto) {
+		$this->transmissionPuerto = $inTransmissionPuerto;
+	}
+
+	public function getTransmissionUsuario() {
+		return $this->transmissionUsuario;
+	}
+
+	public function setTransmissionUsuario($inTransmissionUsuario) {
+		$this->transmissionUsuario = $inTransmissionUsuario;
+	}
+
+	public function getTransmissionPassword() {
+		return $this->transmissionPassword;
+	}
+
+	public function setTransmissionPassword($inTransmissionPassword) {
+		$this->transmissionPassword = $inTransmissionPassword;
 	}
 }
 ?>
