@@ -3,7 +3,7 @@ div.item {
 	height: 250px;
 	cursor: pointer;
 	display: inline-block;
-	margin: 25px 5px;
+	margin: 25px 15px;
 	transition: transform 0.3s;
 }
 
