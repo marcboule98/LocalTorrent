@@ -7,8 +7,10 @@ Class BaseGestor {
 	private $conn = null;
 	// Gestors
 	private $gestorConfiguracion = null;
+	private $gestorTorrent = null;
 	// Daos
 	private $configuracionDao = null;
+	private $torrentDao = null;
 
 	public function __construct() {
 		$this->parseConexion();
@@ -28,6 +30,22 @@ Class BaseGestor {
 		}
 
 		return $this->configuracionDao;
+	}
+
+	public function getGestorTorrent() {
+		if(is_null($this->gestorTorrent)) {
+			$this->gestorTorrent = new GestorTorrent();
+		}
+
+		return $this->gestorTorrent;
+	}
+
+	public function getTorrentDao() {
+		if(is_null($this->torrentDao)) {
+			$this->torrentDao = new TorrentDao();
+		}
+
+		return $this->torrentDao;
 	}
 
 	public function getConexion() {
