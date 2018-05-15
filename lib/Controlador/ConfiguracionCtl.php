@@ -53,7 +53,7 @@ Class ConfiguracionCtl extends BaseCtl {
 
 		$this->parseTransmission();
 		$this->parseDatabase();
-		
+		$this->saveTransmission();
 	}
 
 	private function parseTransmission() {
@@ -82,6 +82,16 @@ Class ConfiguracionCtl extends BaseCtl {
 		}
 
 		$transmission->all();
+	}
+
+	private function saveTransmission() {
+		$transmission = new Transmission();
+		$session = $transmission->getSession();
+
+		$session->setDownloadDir($this->getConfiguracionVO()->getRutaDescargas());
+		$session->setIncompleteDir($this->getConfiguracionVO()->getRutaDescargas() . "/temp_dont_remove");
+		$session->setIncompleteDirEnabled(true);
+		$session->save();
 	}
 
 	private function parseDatabase() {
