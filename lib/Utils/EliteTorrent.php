@@ -20,7 +20,7 @@ Class EliteTorrent {
 
 	public function obtenerNpaginas($nombre){
 		$html = file_get_html('https://www.elitetorrent.biz/?s='.$nombre);
-		$totalPaginas = 0;
+		$totalPaginas = 1;
 
 		if (isset($html->find('div.paginacion')[0])) {
 			$paginacion = $html->find('div.paginacion')[0]->last_child()->attr["href"];
