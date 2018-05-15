@@ -39,8 +39,10 @@ Class ConfiguracionCtl extends BaseCtl {
 	}
 
 	private function parseValueObject() {
-		if(isset($_POST["rutaDescargas"])) {
+		if(isset($_POST["rutaDescargas"]) && is_dir($_POST["rutaDescargas"])) {
 			$this->getConfiguracionVO()->setRutaDescargas(Utils::eliminarCaracteresEspeciales($_POST["rutaDescargas"]));
+		} else {
+			throw new Exception("La ruta indicada no existe!");
 		}
 
 		if(isset($_POST["recibirEmailFinalizados"]) && $_POST["recibirEmailFinalizados"] == "1") {
