@@ -6,6 +6,7 @@ $('#search').on('keyup', function(){
 	timeoutSearch = setTimeout(function(){
 		var numPaginaEliteTorrent = 0;
 		$("#torrents").html('');
+		$("#loadingImg").show();
 
 		mejorTorrent($('#search').val().trim());
 		eliteTorrent($('#search').val().trim(), numPaginaEliteTorrent);
@@ -59,6 +60,8 @@ function eliteTorrent(input, numPagina) {
 			if(numPagina < numPaginaEliteTorrent) {
 				numPagina++;
 				eliteTorrent(input, numPagina);
+			} else {
+				$("#loadingImg").hide();
 			}
 		},
 		error: function(data) {}

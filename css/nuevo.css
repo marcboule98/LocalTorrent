@@ -29,4 +29,13 @@ table td > i {
 	table {
 		font-size: 1.8em;
 	}
+
+	input[type=text] {
+		width: 88%;
+	}
+
+	#loadingImg {
+		margin: -25px 0px;
+		width: 85px;
+	}
 }

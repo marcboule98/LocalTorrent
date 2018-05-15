@@ -12,7 +12,10 @@
 	<div class="container">
 		<h1>Nuevo Contenido</h1>
 
-		<input type="text" id="search" placeholder="Buscar">
+		<div>
+			<input type="text" id="search" placeholder="Buscar">
+			<img src="css/loading.gif" id="loadingImg">
+		</div>
 
 		<table>
 			<thead>
