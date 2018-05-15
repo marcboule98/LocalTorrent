@@ -18,7 +18,7 @@ Class EliteTorrent {
 		return "-";
 	}
 
-	private function obtenerNpaginas($nombre){
+	public function obtenerNpaginas($nombre){
 		$html = file_get_html('https://www.elitetorrent.biz/?s='.$nombre);
 		$paginacion = $html->find('div.paginacion')[0]->last_child()->attr["href"];
 		$totalPaginas = explode("/", $paginacion)[4];
@@ -26,7 +26,7 @@ Class EliteTorrent {
 		return $totalPaginas;
 	}
 
-	private function obtenerResultados($numPag, $nombre){
+	public function obtenerResultados($numPag, $nombre){
 		$ret = array("EliteTorrent" => array());
 		$url = 'https://www.elitetorrent.biz/page/'.$numPag.'/?s=' . $nombre;
 		$html = file_get_html($url);

@@ -4,19 +4,20 @@ $('#search').on('keyup', function(){
 	clearTimeout(timeoutSearch);
 
 	timeoutSearch = setTimeout(function(){
+		var numPaginaEliteTorrent = 0;
+		$("#torrents").html('');
+
 		mejorTorrent($('#search').val().trim());
+		eliteTorrent($('#search').val().trim(), numPaginaEliteTorrent);
 	}, 300);
 });
 
 function mejorTorrent(input){
-	$("#search").prop("disabled", true);
-
 	$.ajax({
 		url : "ajax.php?peticion_ajax_key=nuevo_contenido&pagina=mejorTorrent&input=" + input,
 		type: "GET",
 		success: function(data) {
 			data = JSON.parse(data);
-			$("#search").prop("disabled", false);
 
 			if(data["errors"] != undefined) {
 				for(var i = 0; i < data["errors"].length; i++) {
@@ -33,8 +34,38 @@ function mejorTorrent(input){
 	});	
 }
 
+function eliteTorrent(input, numPagina) {
+	$.ajax({
+		url : "ajax.php?peticion_ajax_key=nuevo_contenido&pagina=eliteTorrent&input=" + input + "&pagEliteTorrent=" + numPagina,
+		type: "GET",
+		success: function(data) {
+			data = JSON.parse(data);
+
+			if(numPagina == 0) {
+				numPaginaEliteTorrent = data;
+			}
+
+			if(data["errors"] != undefined) {
+				for(var i = 0; i < data["errors"].length; i++) {
+					mostrarErrores(data["errors"][i]);
+				}
+
+				return;
+			}
+			
+			mostrarTorrents(data["EliteTorrent"] == undefined ? [] : data["EliteTorrent"]);
+			mostrarInfo(data["info"]);
+
+			if(numPagina < numPaginaEliteTorrent) {
+				numPagina++;
+				eliteTorrent(input, numPagina);
+			}
+		},
+		error: function(data) {}
+	});
+}
+
 function mostrarTorrents(arrayTorrents) {
-	$("#torrents").html('');
 	for (var i = 0; i < arrayTorrents.length; i++) {
 		$("#torrents").append(`<tr>
 			<td>`+ arrayTorrents[i].nombre +`</td>
@@ -72,6 +103,7 @@ function descargarTorrent(url, nombre, calidad, size) {
 
 function mostrarErrores(error){
 	$("div.error").remove();
+	$("div.info").remove();
 	$("div.container").prepend("<div class='error'>"+ error +"</div>");
 }
 
@@ -79,6 +111,7 @@ function mostrarInfo(info){
 	if(info != undefined) {
 		for(var i = 0; i < info.length; i++) {
 			$("div.info").remove();
+			$("div.error").remove();
 			$("div.container").prepend("<div class='info'>"+ info[i] +"</div>");
 		}
 	}

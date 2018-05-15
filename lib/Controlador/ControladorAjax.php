@@ -24,7 +24,7 @@ Class ControladorAjax extends BaseCtl {
 						if ($pagina == "mejorTorrent") {
 							echo json_encode($mejorTorrent->obtenerTorrents($input));
 						} else if($pagina == "eliteTorrent" && $_GET["pagEliteTorrent"] == "0") {
-							echo $eliteTorrent->obtenerNpaginas();
+							echo $eliteTorrent->obtenerNpaginas($input);
 						} else if($pagina == "eliteTorrent" && isset($_GET["pagEliteTorrent"])) {
 							echo json_encode($eliteTorrent->obtenerResultados($_GET["pagEliteTorrent"], $input));
 						} else {
