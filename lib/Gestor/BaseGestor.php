@@ -8,6 +8,7 @@ Class BaseGestor {
 	// Gestors
 	private $gestorConfiguracion = null;
 	private $gestorTorrent = null;
+	private $gestorAjax = null;
 	// Daos
 	private $configuracionDao = null;
 	private $torrentDao = null;
@@ -46,6 +47,14 @@ Class BaseGestor {
 		}
 
 		return $this->torrentDao;
+	}
+
+	public function getGestorAjax() {
+		if(is_null($this->gestorAjax)) {
+			$this->gestorAjax = new GestorAjax();
+		}
+
+		return $this->gestorAjax;
 	}
 
 	public function getConexion() {

@@ -5,6 +5,8 @@ use Transmission\Transmission;
 
 Class ControladorAjax extends BaseCtl {
 	
+	private $gestor = null;
+
 	public function __construct(){
 		try{
 			if (isset($_GET[PETICION_AJAX_KEY]) && !empty($_GET[PETICION_AJAX_KEY])) {
@@ -50,12 +52,29 @@ Class ControladorAjax extends BaseCtl {
 		}
 	}
 
-	private function isEspacioDisponible($url) {
+	private function getGestor() {
+		if(is_null($this->gestor)) {
+			$this->gestor = new GestorAjax();
+		}
 
+		return $this->gestor;
+	}
+
+	private function isEspacioDisponible($url) {
+		$infoT = new TorrentInfo($url);
+		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+
+		if ($infoT->size() > disk_free_space($configuracionVO->getRutaDescargas())) {
+			throw new Exception("No hay espacio disponible en el disco!");
+		}
 	}
 
 	private function isRutaDescargasConfigurado() {
+		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 
+		if(empty($configuracionVO->getRutaDescargas()) || is_null($configuracionVO->getRutaDescargas())) {
+			throw new Exception("La ruta de descargas no puede estar vacia!");
+		}
 	}
 }
 
