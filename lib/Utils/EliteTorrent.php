@@ -1,13 +1,8 @@
+
 <?php
 Class EliteTorrent {
 
 	public function __construct() { }
-
-	public function obtenerTorrents($nombre) {
-		return $this->obtenerNpaginas($nombre);
-	}
-	
-	private function parseTorrents($nombre) {}
 
 	private function obtenerIdioma($idioma){
 		if (strpos($idioma, "Español Latino") !== false) {
@@ -31,7 +26,7 @@ Class EliteTorrent {
 		return $totalPaginas;
 	}
 
-	private function obtenerResultados($numPag,$nombre){
+	private function obtenerResultados($numPag, $nombre){
 		$ret = array("EliteTorrent" => array());
 		$url = 'https://www.elitetorrent.biz/page/'.$numPag.'/?s=' . $nombre;
 		$html = file_get_html($url);
@@ -43,6 +38,7 @@ Class EliteTorrent {
 				"calidad" => "",
 				"idioma" => "-"
 			);
+			$tempArray["img"] = $key->children(0)->children(0)->src;
 			$idioma = $key->children(1)->children(0)->children(0)->attr["title"];
 			$tempArray["idioma"] = $this->obtenerIdioma($idioma);
 

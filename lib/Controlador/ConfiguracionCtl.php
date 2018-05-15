@@ -15,6 +15,7 @@ Class ConfiguracionCtl extends BaseCtl {
 			if(isset($_POST["guardar"])) {
 				$this->parseValueObject();
 				$this->getGestor()->update($this->getConfiguracionVO());
+				$this->info[] = "Guardado correctamente!";
 			}
 		} catch (Exception $e) {
 			$this->errors[] = $e->getMessage();

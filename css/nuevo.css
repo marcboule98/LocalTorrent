@@ -1,0 +1,32 @@
+table {
+	width: 100%;
+	height: auto;
+	border-collapse: collapse;
+	font-size: 1.1em;
+	margin-bottom: 20px;
+}
+
+table th, table td {
+	text-align: left;
+	padding: 10px 0px;
+	border-bottom: 1px solid rgba(166, 89, 146, 0.5);
+}
+
+table td:last-child {
+	color: green;
+	font-size: 1.2em;
+}
+
+table td:first-child {
+	max-width: 150px;
+}
+
+table td > i {
+	cursor: pointer;
+}
+
+@media screen and (max-device-width: 414px) {
+	table {
+		font-size: 1.8em;
+	}
+}

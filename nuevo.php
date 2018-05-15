@@ -14,7 +14,20 @@
 
 		<input type="text" id="search" placeholder="Buscar">
 
+		<table>
+			<thead>
+				<tr>
+					<th>Titulo</th>
+					<th>Idioma</th>
+					<th>Calidad</th>
+					<th>Tamaño</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody id="torrents"></tbody>
+		</table>
 		
 	</div>
+	<script src="<?php echo Utils::addArchivoNoCache("js/nuevo.js"); ?>"></script>
 </body>
 </html>

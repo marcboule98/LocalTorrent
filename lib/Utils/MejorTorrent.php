@@ -13,18 +13,20 @@ Class MejorTorrent {
 		$html = file_get_html($url);
 
 		foreach($html->find('table', 15)->find('tbody > tr') as $tr) {
-			if (!is_null($tr->children(1) && $tr->children(1)->plaintext == "Película")) {
+			if ( (!is_null($tr->children(1)) && ($tr->children(1)->plaintext== "Película")) ) {
 				$tempArray = array(
 					"nombre" => $tr->children(0)->children(0)->plaintext,
 					"size" => "",
 					"calidad" => $tr->children(0)->children(1)->plaintext,
-					"idioma" => "-"
+					"idioma" => "-",
+					"img" => "-"
 				);
 
 				$prevUrl = "http://www.mejortorrent.com" . $tr->children(0)->children(0)->attr["href"];
 				$info = $this->obtenerUrlBuena($prevUrl);
 				$tempArray["url"] = "http://www.mejortorrent.com" . $info["link"];
 				$tempArray["size"] = $info["size"];
+				$tempArray["img"] = $info["img"];
 
 				array_push($ret['MejorTorrent'], $tempArray);
 			}
@@ -36,7 +38,8 @@ Class MejorTorrent {
 
 	private function obtenerUrlBuena($prevUrl) {
 		$html = file_get_html($prevUrl);
-		$info = array("size" => "", "link" => "");
+		$info = array("size" => "", "link" => "", "img" => "");
+		$info['img']= $html->find('img')[1]->src;
 
 		foreach($html->find('a') as $element) {
 			if (strpos($element->href, "link_bajar") !== false) {

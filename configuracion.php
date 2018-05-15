@@ -12,7 +12,7 @@ $ctl = new ConfiguracionCtl();
 	<?php require_once 'includes/sideMenu.php'; ?>
 
 	<div class="container">
-		<?php require_once 'includes/errors.php' ?>
+		<?php require_once 'includes/feedback.php' ?>
 
 		<h1>Configuracion</h1>
 		<form action="" method="POST">
