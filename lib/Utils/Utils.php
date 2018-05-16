@@ -25,7 +25,7 @@ class Utils {
 			"MB" => 1000
 		);
 		
-		return $size * $tipos[$tipo];
+		return (is_numeric($size) ? $size : 0) * $tipos[$tipo];
 	}
 
 	/**
