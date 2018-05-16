@@ -82,18 +82,20 @@ function mostrarTorrents(arrayTorrents) {
 			<td>`+ arrayTorrents[i].nombre +`</td>
 			<td>`+ arrayTorrents[i].idioma +`</td>
 			<td>`+ arrayTorrents[i].calidad +`</td>
-			<td>`+ (arrayTorrents[i].size / 1000000 ).toFixed(2) +` GB</td>
+			<td>`+ (arrayTorrents[i].size / 1048576 ).toFixed(2) +` GB</td>
 			<td>
-				<i class="fa fa-arrow-circle-o-down" onclick="descargarTorrent('`+arrayTorrents[i].url+`', '`+arrayTorrents[i].nombre+`', '`+arrayTorrents[i].idioma+`', '`+arrayTorrents[i].calidad+`', '`+arrayTorrents[i].size+`')"></i>
+				<i class="fa fa-arrow-circle-o-down" onclick="descargarTorrent('`+arrayTorrents[i].url+`', '`+arrayTorrents[i].nombre+`', '`+arrayTorrents[i].idioma+`', '`+arrayTorrents[i].calidad+`', '`+arrayTorrents[i].size+`', '`+arrayTorrents[i].img+`')"></i>
 			</td>
 		</tr>`);
 		
 	}
 }
 
-function descargarTorrent(url, nombre, calidad, size) {
+function descargarTorrent(url, nombre, idioma, calidad, size, img) {
+	$("#loadingImg").show();
+
 	$.ajax({
-		url : "ajax.php?peticion_ajax_key=descargar_torrent&url=" + url + "&nombre=" + nombre + "&calidad=" + calidad + "&size=" + size,
+		url : "ajax.php?peticion_ajax_key=descargar_torrent&url=" + url + "&nombre=" + nombre + "&calidad=" + calidad + "&size=" + size + "&img=" + img + "&idioma=" + idioma,
 		type: "GET",
 		success: function(data) {
 			data = JSON.parse(data);
@@ -107,6 +109,7 @@ function descargarTorrent(url, nombre, calidad, size) {
 			}
 
 			mostrarInfo(data["info"]);
+			$("#loadingImg").hide();
 		},
 		error: function(data) {}
 	});	

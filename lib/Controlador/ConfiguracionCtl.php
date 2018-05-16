@@ -75,12 +75,10 @@ Class ConfiguracionCtl extends BaseCtl {
 
 		$transmission = new Transmission($this->getConfiguracionVO()->getTransmissionHost(), $this->getConfiguracionVO()->getTransmissionPuerto());
 
-		if(!empty($_POST["transmissionUsuario"]) && $_POST["transmissionPassword"]) {
-			$client = new Client();
-			$client->authenticate($this->getConfiguracionVO()->getTransmissionUsuario(), $this->getConfiguracionVO()->getTransmissionPassword());
-			$transmission->setClient($client);
-		}
+		$client = new Client();
+		$client->authenticate($this->getConfiguracionVO()->getTransmissionUsuario(), $this->getConfiguracionVO()->getTransmissionPassword());
 
+		$transmission->setClient($client);
 		$transmission->all();
 	}
 

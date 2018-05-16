@@ -1,11 +1,13 @@
 <?php 
 Class TorrentVO {
 	private $idTorrent;
+	private $idUsuario;
 	private $codigoTorrent;
 	private $nombre;
 	private $size;
 	private $calidad;
 	private $idioma;
+	private $imagen;
 	private $finalizado;
 
 	public function getIdTorrent(){
@@ -14,6 +16,14 @@ Class TorrentVO {
 
 	public function setIdTorrent($idTorrent){
 		$this->idTorrent = $idTorrent;
+	}
+
+	public function getIdUsuario(){
+		return $this->idUsuario;
+	}
+
+	public function setIdUsuario($idUsuario){
+		$this->idUsuario = $idUsuario;
 	}
 
 	public function getCodigoTorrent(){
@@ -54,6 +64,14 @@ Class TorrentVO {
 
 	public function setIdioma($idioma){
 		$this->idioma = $idioma;
+	}
+
+	public function getImagen(){
+		return $this->imagen;
+	}
+
+	public function setImagen($imagen){
+		$this->imagen = $imagen;
 	}
 
 	public function getFinalizado(){

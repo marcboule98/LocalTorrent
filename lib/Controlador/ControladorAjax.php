@@ -34,9 +34,19 @@ Class ControladorAjax extends BaseCtl {
 						break;
 					case DESCARGAR_TORRENT:
 						$this->isEspacioDisponible($_GET["url"]);
+						$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+						$torrent = $this->parseTorrent();
 
-						$transmission = new Transmission();
-						$transmission->add($_GET["url"]);
+						$transmission = new Transmission($configuracionVO->getTransmissionHost(), $configuracionVO->getTransmissionPuerto());
+						$client = new Client();
+						$client->authenticate($configuracionVO->getTransmissionUsuario(), $configuracionVO->getTransmissionPassword());
+						$transmission->setClient($client);
+
+						$transmission->getClient()->call('torrent-add', array(
+						    'filename' => $_GET["url"],
+						    'download-dir' => $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent()
+						));
+						$this->getGestor()->nuevoTorrent($torrent);
 
 						$this->info[] = "Torrent añadido correctamente";
 						echo json_encode(array("info" => $this->info));
@@ -58,6 +68,23 @@ Class ControladorAjax extends BaseCtl {
 		}
 
 		return $this->gestor;
+	}
+
+	private function parseTorrent() {
+		$valueObject = new TorrentVO();
+
+		$valueObject->setIdUsuario(1);
+		$valueObject->setCodigoTorrent(Utils::generarRandomString());
+		$valueObject->setNombre($_GET["nombre"]);
+		$valueObject->setSize($_GET["size"]);
+		$valueObject->setCalidad($_GET["calidad"]);
+		$valueObject->setIdioma($_GET["idioma"]);
+
+		$type = pathinfo($_GET["img"], PATHINFO_EXTENSION);
+		$base64 = 'data:image/' . $type . ';base64,' . base64_encode(file_get_contents(Utils::cnvUrlSpaces20($_GET["img"])));
+		$valueObject->setImagen($base64);
+
+		return $valueObject;
 	}
 
 	private function isEspacioDisponible($url) {

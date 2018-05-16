@@ -55,11 +55,12 @@ CREATE TABLE `Estadisticas` (
 CREATE TABLE `Torrent` (
   `idTorrent` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
-  `codigoTorrent` int(11) DEFAULT NULL,
+  `codigoTorrent` varchar(20) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
-  `calidad` int(11) NOT NULL,
-  `idioma` varchar(255) NOT NULL,
+  `calidad` varchar(50) NOT NULL,
+  `idioma` varchar(50) NOT NULL,
+  `imagen` blob NOT NULL,
   `finalizado` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

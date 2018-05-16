@@ -11,9 +11,9 @@ class Utils {
 	}
 
 	/**
-	 * Convertir cualquier tamaño a KB.
+	 * Convertir KB a cualquier tamaño.
 	 * @param String $tipo
-	 * @param Integer $size 
+	 * @param Integer $size Recibe el tamaño siempre en KB
 	 * @return Integer
 	 */
 	public static function convertirKB($tipo, $size) {
@@ -21,8 +21,8 @@ class Utils {
 		$size = Utils::eliminarCaracteresEspeciales($size);
 
 		$tipos = array(
-			"GB" => 1000000,
-			"MB" => 1000
+			"GB" => 1048576,
+			"MB" => 1024
 		);
 		
 		return (is_numeric($size) ? $size : 0) * $tipos[$tipo];
@@ -40,6 +40,34 @@ class Utils {
 		if(empty($string)) {
 			$string = NULL;
 		}
+
+		return $string;
+	}
+
+	/**
+	 * Generar una string random
+	 * @param String $length 
+	 * @return String
+	 */
+	public static function generarRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $charactersLength = strlen($characters);
+	    $randomString = '';
+
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, $charactersLength - 1)];
+	    }
+
+	    return $randomString;
+	}
+
+	/**
+	 * Convierte los espacios de una string URI a %20.
+	 * @param String $length 
+	 * @return String
+	 */
+	public static function cnvUrlSpaces20($string) {
+		$string = preg_replace("/\s/", '%20', $string);
 
 		return $string;
 	}
