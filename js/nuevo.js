@@ -93,7 +93,8 @@ function mostrarTorrents(arrayTorrents) {
 
 function descargarTorrent(url, nombre, idioma, calidad, size, img) {
 	$("#loadingImg").show();
-
+	cancelarAjax();
+	
 	$.ajax({
 		url : "ajax.php?peticion_ajax_key=descargar_torrent&url=" + url + "&nombre=" + nombre + "&calidad=" + calidad + "&size=" + size + "&img=" + img + "&idioma=" + idioma,
 		type: "GET",
