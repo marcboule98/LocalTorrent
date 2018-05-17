@@ -104,7 +104,7 @@ Class ControladorAjax extends BaseCtl {
 					array_push($torrents, array(
 						"idTorrent" => $torrent->getId(),
 						"nombre" => $torrent->getName(),
-						"ratioDescarga" => $torrent->getDownloadRate() / 100000,
+						"ratioDescarga" => $torrent->getDownloadRate() / 1000000,
 						"tiempoEstimado" => $torrent->getEta(),
 						"completado" => $torrent->getPercentDone(),
 						"finalizado" => $torrent->isFinished(),
