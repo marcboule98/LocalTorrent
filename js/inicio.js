@@ -53,7 +53,7 @@ function actualizarTorrents(arrayTorrents) {
 		$("#torrents").append(`<tr>
 			<td>`+ arrayTorrents[i].nombre +`</td>
 			<td>
-				<div class="progressBarContainer `+ (arrayTorrents[i].finalizado ? "activo" : "acabado") +`" style="width: `+ arrayTorrents[i].completado +`%">
+				<div class="progressBarContainer `+ (arrayTorrents[i].finalizado == false ? "activo" : "acabado") +`" style="width: `+ arrayTorrents[i].completado +`%">
 					<span>`+ arrayTorrents[i].completado.toFixed(2) +`%</span>
 				</div>
 			</td>
