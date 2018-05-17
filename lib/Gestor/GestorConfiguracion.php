@@ -6,7 +6,7 @@ Class GestorConfiguracion extends BaseGestor {
 	}
 
 	public function loadObject() {
-		$valueObject = $this->getConfiguracionDao()->loadObject($this->getConexion());
+		$valueObject = $this->getConfiguracionDao()->loadObject($this->getConexion(), $_SESSION["idUsuario"]);
 		$fileUrl = BASE_PATH . 'Database/DBConfig.txt';
 		
 		if(file_exists($fileUrl)) {
@@ -34,6 +34,22 @@ Class GestorConfiguracion extends BaseGestor {
 
 	public function update($valueObject) {
 		$this->getConfiguracionDao()->update($this->getConexion(), $valueObject);
+	}
+
+	public function insert($valueObject) {
+		$this->getConfiguracionDao()->insert($this->getConexion(), $valueObject);
+	}
+
+	public function save($valueObject) {
+		if($this->isNovaConfiguracio($valueObject)) {
+			$this->insert($valueObject);
+		} else {
+			$this->update($valueObject);
+		}
+	}
+
+	public function isNovaConfiguracio($valueObject) {
+		return $this->getConfiguracionDao()->isNovaConfiguracio($this->getConexion(), $valueObject);
 	}
 }
 ?>

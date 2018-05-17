@@ -12,5 +12,13 @@ Class GestorAjax extends BaseGestor {
 	public function nuevoTorrent($valueObject) {
 		return $this->getGestorTorrent()->insert($valueObject);
 	}
+
+	public function getRutasTorrents() {
+		return $this->getGestorTorrent()->getRutasTorrents($_SESSION["idUsuario"]);
+	}
+
+	public function eliminartorrent($rutaBBDD) {
+		$this->getGestorTorrent()->eliminarTorrent($rutaBBDD);
+	}
 }
 ?>

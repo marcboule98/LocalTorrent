@@ -37,10 +37,7 @@ Class ControladorAjax extends BaseCtl {
 						$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 						$torrent = $this->parseTorrent();
 
-						$transmission = new Transmission($configuracionVO->getTransmissionHost(), $configuracionVO->getTransmissionPuerto());
-						$client = new Client();
-						$client->authenticate($configuracionVO->getTransmissionUsuario(), $configuracionVO->getTransmissionPassword());
-						$transmission->setClient($client);
+						$transmission = $this->getTransmissionObject($configuracionVO);
 
 						$transmission->getClient()->call('torrent-add', array(
 						    'filename' => $_GET["url"],
@@ -48,8 +45,31 @@ Class ControladorAjax extends BaseCtl {
 						));
 						$this->getGestor()->nuevoTorrent($torrent);
 
-						$this->info[] = "Torrent añadido correctamente";
+						$this->info[] = "Torrent añadido correctamente!";
 						echo json_encode(array("info" => $this->info));
+
+						break;
+					case OBTENER_TORRENTS:
+						echo json_encode($this->getTorrentsCliente());
+						break;
+					case ELIMINAR_TORRENT:
+						if(isset($_GET["idTorrent"]) && $_GET["rutaBBDD"]) {
+							$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+							$transmission = $this->getTransmissionObject($configuracionVO);
+
+							$transmission->getClient()->call('torrent-remove', array(
+							    'ids' => intval($_GET["idTorrent"]),
+							    'delete-local-data' => true
+							));
+
+							$this->getGestor()->eliminarTorrent($_GET["rutaBBDD"]);
+
+							$this->info[] = "Torrent eliminado correctamente!";
+							echo json_encode(array("info" => $this->info));
+						} else {
+							throw new Exception("Error, no se puede eliminar el torrent!");
+						}
+						
 						break;
 					default:
 						throw new Exception("No se ha encontrado key");
@@ -70,10 +90,47 @@ Class ControladorAjax extends BaseCtl {
 		return $this->gestor;
 	}
 
+	private function getTorrentsCliente() {
+		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+		$transmission = $this->getTransmissionObject($configuracionVO);
+		$rutasUsuario = $this->getGestor()->getRutasTorrents();
+		$torrents = array();
+
+		foreach($transmission->all() as $torrent) {
+			foreach($rutasUsuario as $ruta) {
+				$rutaExplode = explode("/", $torrent->getDownloadDir());
+
+				if($ruta == $rutaExplode[count($rutaExplode) - 1]) {
+					array_push($torrents, array(
+						"idTorrent" => $torrent->getId(),
+						"nombre" => $torrent->getName(),
+						"ratioDescarga" => $torrent->getDownloadRate(),
+						"ratioSubida" => $torrent->getUploadRate(),
+						"tiempoEstimado" => $torrent->getEta(),
+						"completado" => $torrent->getPercentDone(),
+						"finalizado" => $torrent->isFinished(),
+						"rutaBBDD" => $ruta
+					));
+				}
+			}
+		}
+
+		return $torrents;
+	}
+
+	private function getTransmissionObject($configuracionVO) {
+		$transmission = new Transmission($configuracionVO->getTransmissionHost(), $configuracionVO->getTransmissionPuerto());
+		$client = new Client();
+		$client->authenticate($configuracionVO->getTransmissionUsuario(), $configuracionVO->getTransmissionPassword());
+		$transmission->setClient($client);
+
+		return $transmission;
+	}
+
 	private function parseTorrent() {
 		$valueObject = new TorrentVO();
 
-		$valueObject->setIdUsuario(1);
+		$valueObject->setIdUsuario($_SESSION["idUsuario"]);
 		$valueObject->setCodigoTorrent(Utils::generarRandomString());
 		$valueObject->setNombre($_GET["nombre"]);
 		$valueObject->setSize($_GET["size"]);

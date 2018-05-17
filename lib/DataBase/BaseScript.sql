@@ -24,6 +24,7 @@ USE LocalTorrent;
 --
 
 CREATE TABLE `Configuracion` (
+  `idUsuario` int(11) DEFAULT NULL,
   `rutaDescargas` varchar(500) DEFAULT NULL,
   `recibirEmailFinalizados` int(1) NOT NULL DEFAULT '0',
   `host` varchar(250) DEFAULT 'localhost',
@@ -31,8 +32,6 @@ CREATE TABLE `Configuracion` (
   `usuario` varchar(250) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO Configuracion VALUES ();
 
 -- --------------------------------------------------------
 
@@ -75,7 +74,6 @@ CREATE TABLE `Usuario` (
   `nombre` varchar(32) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
   `emailValidado` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -89,6 +87,13 @@ CREATE TABLE `Usuario` (
 ALTER TABLE `Torrent`
   ADD PRIMARY KEY (`idTorrent`),
   ADD KEY `FK_TorrentUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `Configuracion`
+--
+ALTER TABLE `Configuracion`
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD KEY `FK_ConfiguracionUsuario` (`idUsuario`);
 
 --
 -- Indices de la tabla `Usuario`
@@ -121,3 +126,6 @@ ALTER TABLE `Usuario`
 --
 ALTER TABLE `Torrent`
   ADD CONSTRAINT `FK_TorrentUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+  ALTER TABLE `Configuracion`
+  ADD CONSTRAINT `FK_ConfiguracionUsuario` FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;

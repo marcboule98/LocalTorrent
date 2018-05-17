@@ -1,6 +1,7 @@
 <?php
 Class ConfiguracionVO {
 	
+	private $idUsuario;
 	private $rutaDescargas;
 	private $recibirEmailFinalizados;
 	private $host;
@@ -10,6 +11,14 @@ Class ConfiguracionVO {
 	private $transmissionPuerto;
 	private $transmissionUsuario;
 	private $transmissionPassword;
+
+	public function getIdUsuario() {
+		return $this->idUsuario;
+	}
+
+	public function setIdUsuario($inIdUsuario) {
+		$this->idUsuario = $inIdUsuario;
+	}
 
 	public function getRutaDescargas() {
 		return $this->rutaDescargas;

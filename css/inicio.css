@@ -12,7 +12,7 @@ table th, table td {
 	border-bottom: 1px solid rgba(166, 89, 146, 0.5);
 }
 
-table th:last-child, table td:last-child, table td:nth-child(3), table th:nth-child(3) {
+table th:not(:first-child), table td:not(:first-child) {
 	text-align: right;
 }
 
@@ -22,6 +22,10 @@ table td:last-child {
 
 table td:first-child {
 	max-width: 150px;
+}
+
+table td > i {
+	cursor: pointer;
 }
 
 .progressBarContainer {

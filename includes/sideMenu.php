@@ -1,5 +1,5 @@
 <div class="sideMenu">
-	<p class="user">USUARIO</p>
+	<p class="user"><?php echo $_SESSION["nombre"]; ?></p>
 	<hr>
 	<ul>
 		<li>
@@ -24,7 +24,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="salir.php">
 				<i class="fa fa-sign-out" aria-hidden="true"></i>Salir
 			</a>
 		</li>
@@ -63,7 +63,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="salir.php">
 				<i class="fa fa-sign-out" aria-hidden="true"></i>
 			</a>
 		</li>

@@ -14,7 +14,7 @@ Class ConfiguracionCtl extends BaseCtl {
 
 			if(isset($_POST["guardar"])) {
 				$this->parseValueObject();
-				$this->getGestor()->update($this->getConfiguracionVO());
+				$this->getGestor()->save($this->getConfiguracionVO());
 				$this->info[] = "Guardado correctamente!";
 			}
 		} catch (Exception $e) {
@@ -39,6 +39,8 @@ Class ConfiguracionCtl extends BaseCtl {
 	}
 
 	private function parseValueObject() {
+		$this->getConfiguracionVO()->setIdUsuario($_SESSION["idUsuario"]);
+		
 		if(isset($_POST["rutaDescargas"]) && is_dir($_POST["rutaDescargas"])) {
 			$this->getConfiguracionVO()->setRutaDescargas(Utils::eliminarCaracteresEspeciales($_POST["rutaDescargas"]));
 		} else {

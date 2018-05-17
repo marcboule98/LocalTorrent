@@ -17,23 +17,14 @@
 				<tr>
 					<th>Titulo</th>
 					<th>Progreso</th>
-					<th>Tamaño</th>
+					<th>Descarga</th>
+					<th>Subida</th>
 					<th>#</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>Los vengadores</td>
-					<td>
-						<div class="progressBarContainer activo">
-							<span>90%</span>
-						</div>
-					</td>
-					<td>36 GB</td>
-					<td><i class="fa fa-trash"></i></td>
-				</tr>
-			</tbody>
+			<tbody id="torrents"></tbody>
 		</table>
 	</div>
+	<script src="<?php echo Utils::addArchivoNoCache("js/inicio.js"); ?>"></script>
 </body>
 </html>

@@ -12,5 +12,13 @@ Class GestorTorrent extends BaseGestor {
 	public function insert($valueObject) {
 		return $this->getTorrentDao()->insert($this->getConexion(), $valueObject);
 	}
+
+	public function getRutasTorrents($idUsuario) {
+		return $this->getTorrentDao()->getRutasTorrents($this->getConexion(), $idUsuario);
+	}
+
+	public function eliminarTorrent($rutaBBDD) {
+		$this->getTorrentDao()->eliminarTorrent($this->getConexion(), $rutaBBDD);
+	}
 }
 ?>

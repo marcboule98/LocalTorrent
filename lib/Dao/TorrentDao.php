@@ -33,5 +33,29 @@ Class TorrentDao {
             throw new Exception("<b>Error al guardar:</b> " . $conn->error);
         }
     }
+
+
+    public function getRutasTorrents($conn, $idUsuario) {
+        $ret = array();
+        $sql = "SELECT codigoTorrent FROM Torrent WHERE idUsuario = ". $idUsuario ." ";
+
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                array_push($ret, $row["codigoTorrent"]);
+            }
+        }
+
+        return $ret;
+    }
+
+    public function eliminarTorrent($conn, $rutaBBDD) {
+        $sql = "DELETE FROM Torrent WHERE codigoTorrent = '". $rutaBBDD ."'";
+        
+        if (!$conn->query($sql)) {
+            throw new Exception("<b>Error al eliminar:</b> " . $conn->error);
+        }
+    }
 }
 ?>
