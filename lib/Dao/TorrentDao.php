@@ -37,7 +37,7 @@ Class TorrentDao {
 
     public function getRutasTorrents($conn, $idUsuario) {
         $ret = array();
-        $sql = "SELECT codigoTorrent FROM Torrent WHERE idUsuario = ". $idUsuario ." ";
+        $sql = "SELECT codigoTorrent FROM Torrent WHERE idUsuario = ". $idUsuario ." AND finalizado = 0";
 
         $result = $conn->query($sql);
 
