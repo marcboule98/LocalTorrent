@@ -57,8 +57,8 @@ function actualizarTorrents(arrayTorrents) {
 					<span>`+ arrayTorrents[i].completado +`%</span>
 				</div>
 			</td>
-			<td>`+ arrayTorrents[i].ratioDescarga +`</td>
-			<td>`+ arrayTorrents[i].ratioSubida +`</td>
+			<td>`+ arrayTorrents[i].ratioDescarga.toFixed(2) +` MB/s</td>
+			<td>`+ arrayTorrents[i].tiempoEstimado +` Min</td>
 			<td><i class="fa fa-trash" onclick="eliminarTorrent(`+ arrayTorrents[i].idTorrent +`, '`+ arrayTorrents[i].rutaBBDD +`')"></i></td>
 		</tr>`);
 	}

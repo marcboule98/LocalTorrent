@@ -301,4 +301,10 @@ div.info {
 		border-left: 10px solid #F44336;
 		padding: 15px;
 	}
+
+	div.info {
+		font-size: 2em;
+		border-left: 10px solid green;
+		padding: 15px;
+	}
 }
