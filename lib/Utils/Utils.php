@@ -71,19 +71,6 @@ class Utils {
 
 		return $string;
 	}
-
-	/**
-	 * Comprueba si el base64 es correcto.
-	 * @param String $base64 
-	 * @return String Imagen por defecto
-	 */
-	public function isBase64Valid($base64) {
-		if (base64_encode(base64_decode($base64, true)) === $base64){
-		    return true;
-		}
-
-		return false;
-	}
 }
 
 ?>
