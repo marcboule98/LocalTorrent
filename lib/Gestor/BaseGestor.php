@@ -62,7 +62,7 @@ Class BaseGestor {
 	}
 
 	private function parseConexion() {
-		$fileUrl = BASE_PATH . 'DataBase/DBConfig.txt';
+		$fileUrl = BASE_PATH . 'Database/DBConfig.txt';
 		
 		if(file_exists($fileUrl)) {
 			$file = file_get_contents($fileUrl);

@@ -51,7 +51,7 @@
 	}
 
 	function getConexion() {
-		$fileUrl = 'lib/DataBase/DBConfig.txt';
+		$fileUrl = 'lib/Database/DBConfig.txt';
 		$conn = null;
 		$host = null;
 		$usuario = null;

@@ -7,7 +7,7 @@ Class GestorConfiguracion extends BaseGestor {
 
 	public function loadObject() {
 		$valueObject = $this->getConfiguracionDao()->loadObject($this->getConexion(), $_SESSION["idUsuario"]);
-		$fileUrl = BASE_PATH . 'DataBase/DBConfig.txt';
+		$fileUrl = BASE_PATH . 'Database/DBConfig.txt';
 		
 		if(file_exists($fileUrl)) {
 			$file = file_get_contents($fileUrl);
