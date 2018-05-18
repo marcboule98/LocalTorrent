@@ -1,81 +1,14 @@
-* {
-	font-family: 'Inconsolata', monospace;
-}
-
 .container {
 	width: 70%;
 	margin: 0px auto
 }
 
-.container a {
-	text-decoration: none;
-	border-bottom: 1px solid rgba(166, 89, 146, 0.5);
-	padding: 2px 0px;
-	color: black;
-}
-
-.container a:hover {
-	border-bottom: 1px solid #a65992;
-}
-
-input[type=submit] {
-	font-size: 1.5em;
-    color: white;
-    background: #a65992;
-    border: none;
-    padding: 10px 30px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.groupInput > * {
-	display: inherit;
-}
-
-.groupInput > label {
-	padding-bottom: 10px;
-	font-size: 1.1em;
-}
-
 input[type=text], input[type=password] {
 	width: 100%;
-	text-indent: 10px;
-	padding: 7px 0px;
-	font-size: 1.5em;
-	outline: none;
-	color: black;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: 3px solid #a65992;
-	background-color: rgba(166, 89, 146, 0.1);
-	margin-bottom: 40px;
 }
 
 @media screen and (max-device-width: 414px) {
 	.container {
 		width: 95%;
-	}
-
-	input[type=text], input[type=password] {
-		width: 100%;
-		font-size: 3em;
-	}
-
-	h1 {
-		font-size: 5em;
-	}
-
-	p {
-		font-size: 2em;
-	}
-
-	input[type=submit] {
-		font-size: 2.5em;
-	}
-
-	.groupInput > label {
-		font-size: 2em;
-		padding-bottom: 15px;
 	}
 }

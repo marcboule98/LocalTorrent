@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION["idUsuario"])) {
+	header("Location: index.php");
+}
+?>
 <div class="sideMenu">
 	<p class="user"><?php echo $_SESSION["nombre"]; ?></p>
 	<hr>
