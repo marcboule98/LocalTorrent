@@ -3,7 +3,7 @@ require_once BASE_PATH.'/../includes/vendor/autoload.php';
 use Transmission\Client;
 use Transmission\Transmission;
 
-Class AjaxCtl extends BaseCtl {
+Class ControladorAjax extends BaseCtl {
 	
 	private $gestor = null;
 

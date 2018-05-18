@@ -62,7 +62,7 @@ Class BaseGestor {
 	}
 
 	private function parseConexion() {
-		$fileUrl = BASE_PATH . 'Database/DBConfig.txt';
+		$fileUrl = BASE_PATH . 'DataBase/DBConfig.txt';
 		
 		if(file_exists($fileUrl)) {
 			$file = file_get_contents($fileUrl);
@@ -90,7 +90,7 @@ Class BaseGestor {
 			}
 
 		} else {
-			throw new Exception("<b>No se puede encontrar la configuracion de la Base de Datos<b>");
+			throw new Exception("No se puede encontrar la configuracion de la Base de Datos");
 		}
 	}
 }
