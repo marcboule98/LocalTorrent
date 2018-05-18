@@ -57,5 +57,24 @@ Class TorrentDao {
             throw new Exception("<b>Error al eliminar:</b> " . $conn->error);
         }
     }
+
+    public function obtenerDescargasFinalizadas($conn, $idUsuario) {
+        $ret = array();
+        $sql = "SELECT nombre, imagen, CONCAT((SELECT rutaDescargas FROM Configuracion WHERE idUsuario = ".$idUsuario."),'/',codigoTorrent) AS rutaDescarga FROM Torrent WHERE idUsuario = ".$idUsuario." AND finalizado = 1";
+
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                array_push($ret, array(
+                    "nombre" => $row["nombre"],
+                    "imagen" => $row["imagen"],
+                    "rutaDescarga" => $row["rutaDescarga"]
+                ));
+            }
+        }
+
+        return $ret;
+    }
 }
 ?>

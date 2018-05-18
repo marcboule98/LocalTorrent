@@ -9,6 +9,7 @@ Class BaseGestor {
 	private $gestorConfiguracion = null;
 	private $gestorTorrent = null;
 	private $gestorAjax = null;
+	private $gestorContenido = null;
 	// Daos
 	private $configuracionDao = null;
 	private $torrentDao = null;
@@ -55,6 +56,14 @@ Class BaseGestor {
 		}
 
 		return $this->gestorAjax;
+	}
+
+	public function getGestorContenido() {
+		if(is_null($this->gestorContenido)) {
+			$this->gestorContenido = new GestorContenido();
+		}
+
+		return $this->gestorContenido;
 	}
 
 	public function getConexion() {
