@@ -59,7 +59,7 @@ CREATE TABLE `Torrent` (
   `size` int(11) DEFAULT NULL,
   `calidad` varchar(50) NOT NULL,
   `idioma` varchar(50) NOT NULL,
-  `imagen` blob NOT NULL,
+  `imagen` varchar(500) NOT NULL,
   `finalizado` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

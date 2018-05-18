@@ -39,14 +39,19 @@ Class ControladorAjax extends BaseCtl {
 
 						$transmission = $this->getTransmissionObject($configuracionVO);
 
-						$transmission->getClient()->call('torrent-add', array(
+						$response = $transmission->getClient()->call('torrent-add', array(
 						    'filename' => Utils::cnvUrlSpaces20($_GET["url"]),
 						    'download-dir' => $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent()
 						));
-						$this->getGestor()->nuevoTorrent($torrent);
 
-						$this->info[] = "Torrent añadido correctamente!";
-						echo json_encode(array("info" => $this->info));
+						if($response->result == "success") {
+							$this->getGestor()->nuevoTorrent($torrent);
+
+							$this->info[] = "Torrent añadido correctamente!";
+							echo json_encode(array("info" => $this->info));
+						} else {
+							throw new Exception("No se ha podido añadir el torrent.");
+						}
 
 						break;
 					case OBTENER_TORRENTS:
@@ -135,10 +140,7 @@ Class ControladorAjax extends BaseCtl {
 		$valueObject->setSize($_GET["size"]);
 		$valueObject->setCalidad($_GET["calidad"]);
 		$valueObject->setIdioma($_GET["idioma"]);
-
-		$type = pathinfo(Utils::cnvUrlSpaces20($_GET["img"]), PATHINFO_EXTENSION);
-		$base64 = 'data:image/' . $type . ';base64,' . base64_encode(file_get_contents(Utils::cnvUrlSpaces20($_GET["img"])));
-		$valueObject->setImagen($base64);
+		$valueObject->setImagen(Utils::cnvUrlSpaces20($_GET["img"]));
 
 		return $valueObject;
 	}
