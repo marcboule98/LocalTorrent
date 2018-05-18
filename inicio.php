@@ -18,7 +18,7 @@
 					<th>Titulo</th>
 					<th>Progreso</th>
 					<th>Descarga</th>
-					<th>Tiempo Restante</th>
+					<th>Restante</th>
 					<th>#</th>
 				</tr>
 			</thead>

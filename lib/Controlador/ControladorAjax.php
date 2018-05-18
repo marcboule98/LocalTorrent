@@ -40,7 +40,7 @@ Class ControladorAjax extends BaseCtl {
 						$transmission = $this->getTransmissionObject($configuracionVO);
 
 						$transmission->getClient()->call('torrent-add', array(
-						    'filename' => $_GET["url"],
+						    'filename' => Utils::cnvUrlSpaces20($_GET["url"]),
 						    'download-dir' => $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent()
 						));
 						$this->getGestor()->nuevoTorrent($torrent);
@@ -136,7 +136,7 @@ Class ControladorAjax extends BaseCtl {
 		$valueObject->setCalidad($_GET["calidad"]);
 		$valueObject->setIdioma($_GET["idioma"]);
 
-		$type = pathinfo($_GET["img"], PATHINFO_EXTENSION);
+		$type = pathinfo(Utils::cnvUrlSpaces20($_GET["img"]), PATHINFO_EXTENSION);
 		$base64 = 'data:image/' . $type . ';base64,' . base64_encode(file_get_contents(Utils::cnvUrlSpaces20($_GET["img"])));
 		$valueObject->setImagen($base64);
 

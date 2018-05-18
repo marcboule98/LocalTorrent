@@ -24,7 +24,7 @@ Class MejorTorrent {
 
 				$prevUrl = "http://www.mejortorrent.com" . $tr->children(0)->children(0)->attr["href"];
 				$info = $this->obtenerUrlBuena($prevUrl);
-				$tempArray["url"] = "http://www.mejortorrent.com" . $info["link"];
+				$tempArray["url"] = $info["link"];
 				$tempArray["size"] = $info["size"];
 				$tempArray["img"] = $info["img"];
 
