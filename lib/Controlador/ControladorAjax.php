@@ -34,15 +34,19 @@ Class ControladorAjax extends BaseCtl {
 						break;
 					case DESCARGAR_TORRENT:
 						$this->isEspacioDisponible($_GET["url"]);
+						$this->guardarTorrentTemp($_GET["url"]);
+
 						$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 						$torrent = $this->parseTorrent();
 
 						$transmission = $this->getTransmissionObject($configuracionVO);
 
 						$response = $transmission->getClient()->call('torrent-add', array(
-						    'filename' => Utils::cnvUrlSpaces20($_GET["url"]),
+						    'filename' => $this->getPathTorrentTemp(),
 						    'download-dir' => $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent()
 						));
+
+						$this->eliminarTorrentTemp();
 
 						if($response->result == "success") {
 							$this->getGestor()->nuevoTorrent($torrent);
@@ -193,6 +197,19 @@ Class ControladorAjax extends BaseCtl {
 		if(empty($configuracionVO->getRutaDescargas()) || is_null($configuracionVO->getRutaDescargas())) {
 			throw new Exception("La ruta de descargas no puede estar vacia!");
 		}
+	}
+
+	private function guardarTorrentTemp($rutaTorrent) {
+		file_put_contents(BASE_PATH . "tmpTorrent.torrent", fopen(Utils::cnvUrlSpaces20($rutaTorrent), 'r'));
+		chmod(BASE_PATH . "tmpTorrent.torrent", 0777);
+	}
+
+	private function eliminarTorrentTemp() {
+		unlink(BASE_PATH . "tmpTorrent.torrent");
+	}
+
+	private function getPathTorrentTemp() {
+		return BASE_PATH . "tmpTorrent.torrent";
 	}
 }
 

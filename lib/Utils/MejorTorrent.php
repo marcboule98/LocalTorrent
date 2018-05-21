@@ -48,7 +48,7 @@ Class MejorTorrent {
 
 				foreach ($htmlDownload->find('a') as $element) {
 					if (strpos($element->href, ".torrent") !== false) {
-						$info['link'] = $element->href;
+						$info['link'] = "http://www.mejortorrent.com/uploads/torrents/peliculas/" . explode("&name=", $element->href)[1];
 					}
 				}
 			}
