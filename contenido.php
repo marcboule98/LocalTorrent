@@ -21,7 +21,7 @@ $resultado = $ctl->obtenerDescargasFinalizadas();
 
 		<?php if (count($resultado) > 0){ ?>
 			<?php foreach ($resultado as $torrent) { ?>
-				<div class="item" onclick="obtenerArchivos(' <?php echo $torrent["rutaDescarga"]; ?> ')">
+				<div class="item" onclick="obtenerArchivos('<?php echo $torrent["rutaDescarga"]; ?>')">
 					<img src="<?php echo $torrent["imagen"]; ?>">
 					<p><?php echo $torrent["nombre"]; ?></p>
 				</div>

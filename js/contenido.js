@@ -13,3 +13,7 @@ $("#search").on("keyup", function(){
 		}
 	});
 });
+
+function obtenerArchivos(ruta) {
+	alert(ruta);
+}
