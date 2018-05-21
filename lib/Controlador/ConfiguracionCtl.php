@@ -116,7 +116,7 @@ Class ConfiguracionCtl extends BaseCtl {
 		if($connTemp->connect_error) {
 			throw new Exception("<b>Error al guardar la conexion:</b> " . $connTemp->connect_error);
 		} else {
-			file_put_contents(BASE_PATH . 'Database/DBConfig.txt', $stringDataBase);
+			file_put_contents(BASE_PATH . 'DataBase/DBConfig.txt', $stringDataBase);
 		}
 	}
 }
