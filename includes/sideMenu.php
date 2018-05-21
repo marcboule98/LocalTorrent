@@ -35,8 +35,8 @@ if(!isset($_SESSION["idUsuario"])) {
 		</li>
 	</ul>
 	<hr>
-	<p>Descargas activas: <span>19</span></p>
-	<p>Archivos descargados: <span>20</span></p>
+	<p>Descargas activas: <span><?php echo $ctl->getBaseGestor()->getDescargasActivas(); ?></span></p>
+	<p>Descargas finalizadas: <span><?php echo $ctl->getBaseGestor()->getDescargasFinalizadas(); ?></span></p>
 	<p class="copyright">LocalTorrent · Copyright 2018</p>
 </div>
 

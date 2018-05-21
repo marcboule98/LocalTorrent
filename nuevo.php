@@ -1,4 +1,7 @@
-<?php require_once 'lib/lib.php'; ?>
+<?php 
+require_once 'lib/lib.php';
+$ctl = new NuevoCtl();	
+?>
 <!DOCTYPE html>
 <html>
 <head>

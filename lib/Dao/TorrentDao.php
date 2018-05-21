@@ -84,5 +84,35 @@ Class TorrentDao {
             throw new Exception("<b>Error al actualizar:</b> " . $conn->error);
         }
     }
+
+    public function getDescargasActivas($conn) {
+        $ret = 0;
+        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 0";
+
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()) {
+                $ret = $row["numTorrents"];
+            }
+        }
+
+        return $ret;
+    }
+
+    public function getDescargasFinalizadas($conn) {
+        $ret = 0;
+        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 1";
+
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()) {
+                $ret = $row["numTorrents"];
+            }
+        }
+
+        return $ret;
+    }
 }
 ?>

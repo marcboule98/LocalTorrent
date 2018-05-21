@@ -102,5 +102,13 @@ Class BaseGestor {
 			throw new Exception("No se puede encontrar la configuracion de la Base de Datos");
 		}
 	}
+
+	public function getDescargasActivas() {
+		return $this->getTorrentDao()->getDescargasActivas($this->getConexion());
+	}
+
+	public function getDescargasFinalizadas() {
+		return $this->getTorrentDao()->getDescargasFinalizadas($this->getConexion());
+	}
 }
 ?>
