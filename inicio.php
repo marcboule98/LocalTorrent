@@ -20,6 +20,7 @@
 					<th>Descarga</th>
 					<th>Restante</th>
 					<th>#</th>
+					<th>#</th>
 				</tr>
 			</thead>
 			<tbody id="torrents"></tbody>

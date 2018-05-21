@@ -46,6 +46,28 @@ function eliminarTorrent(id, rutaBBDD) {
 	});	
 }
 
+function pausaPlay(id) {
+	$.ajax({
+		url : "ajax.php?peticion_ajax_key=pausa_play_torrent&idTorrent=" + id,
+		type: "GET",
+		success: function(data) {
+			data = JSON.parse(data);
+
+			if(data["errors"] != undefined) {
+				for(var i = 0; i < data["errors"].length; i++) {
+					mostrarErrores(data["errors"][i]);
+				}
+
+				return;
+			}
+			
+			obtener_torrents();
+			mostrarInfo(data["info"]);
+		},
+		error: function(data) {}
+	});	
+}
+
 function actualizarTorrents(arrayTorrents) {
 	$("#torrents").html("");
 
@@ -59,6 +81,7 @@ function actualizarTorrents(arrayTorrents) {
 			</td>
 			<td>`+ arrayTorrents[i].ratioDescarga.toFixed(2) +` MB/s</td>
 			<td>`+ (arrayTorrents[i].tiempoEstimado == -1 ? 0 : arrayTorrents[i].tiempoEstimado) +` Min</td>
+			<td><i class="fa fa-`+ (arrayTorrents[i].isPausado == true ? "play" : "pause") +`" onclick="pausaPlay(`+ arrayTorrents[i].idTorrent +`)"></i></td>
 			<td><i class="fa fa-trash" onclick="eliminarTorrent(`+ arrayTorrents[i].idTorrent +`, '`+ arrayTorrents[i].rutaBBDD +`')"></i></td>
 		</tr>`);
 	}

@@ -76,6 +76,38 @@ Class ControladorAjax extends BaseCtl {
 						}
 						
 						break;
+					case PAUSA_PLAY_TORRENT:
+						if(isset($_GET["idTorrent"])) {
+							$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+							$transmission = $this->getTransmissionObject($configuracionVO);
+							$isFound = false;
+
+							foreach($transmission->all() as $torrent) {
+								if($torrent->getId() == $_GET["idTorrent"]) {
+									$isFound = true;
+
+									if($torrent->getStatus() == 0) {
+										$transmission->start($torrent);
+										$this->info[] = "Torrent reanudado correctamente!";
+									} else {
+										$transmission->stop($torrent);
+										$this->info[] = "Torrent pausado correctamente!";
+									}
+
+									break;
+								}
+							}
+
+							if($isFound == true) {
+								echo json_encode(array("info" => $this->info));	
+							} else {
+								throw new Exception("El torrent con ID (". $_GET["idTorrent"] .") no se ha encontrado");
+							}
+							
+						} else {
+							throw new Exception("No se puede reanudar/pausar la descarga.");
+						}
+						break;
 					default:
 						throw new Exception("No se ha encontrado key");
 						break;
@@ -113,7 +145,8 @@ Class ControladorAjax extends BaseCtl {
 						"tiempoEstimado" => $torrent->getEta(),
 						"completado" => $torrent->getPercentDone(),
 						"finalizado" => $torrent->isFinished(),
-						"rutaBBDD" => $ruta
+						"rutaBBDD" => $ruta,
+						"isPausado" => ($torrent->getStatus() == 0 ? true : false)
 					));
 				}
 			}
