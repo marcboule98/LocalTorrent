@@ -24,5 +24,13 @@ Class GestorTorrent extends BaseGestor {
 	public function obtenerDescargasFinalizadas($idUsuario) {
 		return $this->getTorrentDao()->obtenerDescargasFinalizadas($this->getConexion(), $idUsuario);
 	}
+
+	public function updateTorrentsFinalizados($torrents) {
+		foreach ($torrents as $torrent) {
+			if($torrent["finalizado"] == true) {
+				$this->getTorrentDao()->updateTorrentsFinalizados($this->getConexion(), $torrent["rutaBBDD"]);
+			}
+		}
+	}
 }
 ?>

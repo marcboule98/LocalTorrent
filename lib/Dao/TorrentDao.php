@@ -76,5 +76,13 @@ Class TorrentDao {
 
         return $ret;
     }
+
+    public function updateTorrentsFinalizados($conn, $codigoTorrent) {
+        $sql = "UPDATE Torrent SET finalizado = 1 WHERE codigoTorrent = '". $codigoTorrent ."' ";
+
+        if (!$conn->query($sql)) {
+            throw new Exception("<b>Error al actualizar:</b> " . $conn->error);
+        }
+    }
 }
 ?>

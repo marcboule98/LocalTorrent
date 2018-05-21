@@ -20,5 +20,9 @@ Class GestorAjax extends BaseGestor {
 	public function eliminartorrent($rutaBBDD) {
 		$this->getGestorTorrent()->eliminarTorrent($rutaBBDD);
 	}
+
+	public function updateTorrentsFinalizados($torrents) {
+		$this->getGestorTorrent()->updateTorrentsFinalizados($torrents);
+	}
 }
 ?>

@@ -54,7 +54,7 @@ Class ControladorAjax extends BaseCtl {
 							$this->info[] = "Torrent añadido correctamente!";
 							echo json_encode(array("info" => $this->info));
 						} else {
-							throw new Exception("No se ha podido añadir el torrent.");
+							throw new Exception("No se ha podido añadir el torrent: " . $response->result);
 						}
 
 						break;
@@ -156,7 +156,13 @@ Class ControladorAjax extends BaseCtl {
 			}
 		}
 
+		$this->updateTorrentsFinalizados($torrents);
+
 		return $torrents;
+	}
+
+	private function updateTorrentsFinalizados($torrents) {
+		$this->getGestor()->updateTorrentsFinalizados($torrents);
 	}
 
 	private function getTransmissionObject($configuracionVO) {
