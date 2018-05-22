@@ -77,7 +77,7 @@ function mostrarVideo(url){
 	$("#openModal > div").html(`
 		<a href="#close" title="Cerrar" class="close">X</a>
 		<video controls>
-	  		<source src="file://`+ url +`" type="`+ tipo +`">
+	  		<source src="`+ url +`" type="`+ tipo +`">
 			Tu navegador no soporta video. Recomendados. Chrome / Firefox / Opera
 		</video>
 	`);
