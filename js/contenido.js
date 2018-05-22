@@ -80,7 +80,7 @@ function mostrarVideo(url){
 
 	$("#openModal > div").html(`
 		<a href="#close" title="Cerrar" class="close" onclick="pausarVideo()">X</a>
-		<video controls autoplay controlsList="nodownload" preload="none">
+		<video controls autoplay controlsList="nodownload" preload="metadata">
 	  		<source src="reproductor.php?tipo=`+ tipo +`&url=`+ url +`" type="`+ tipo +`">
 			Tu navegador no soporta video. Recomendados. Chrome / Firefox / Opera
 		</video>
