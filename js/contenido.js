@@ -67,7 +67,7 @@ function mostrarVideo(url){
 	var tipo = "video/mp4";
 
 	if (url.indexOf(".mp4") || url.indexOf(".mpg") || url.indexOf(".mpeg")) {
-		tipo = "video/mp4; codecs='avc1.42E01E, mp4a.40.2'";
+		tipo = "video/mp4";
 	}else if(url.indexOf(".ogg")){
 		tipo = "video/ogg";
 	}else if (url.indexOf(".webm")) {
