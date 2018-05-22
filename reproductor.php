@@ -1,6 +1,6 @@
 <?php
 session_start();
-$file = isset($_GET["url"]) ? $_GET["url"] : "";
+$file = isset($_GET["url"]) ? "/" . $_GET["url"] : "";
 $tipo = isset($_GET["tipo"]) ? $_GET["tipo"] : "";
 
 if(!isset($_SESSION["idUsuario"])) {
