@@ -7,7 +7,7 @@ $tipo = isset($_GET["tipo"]) ? $_GET["tipo"] : "";
 if(!isset($_SESSION["idUsuario"])) {
 	throw new Exception("No se encuentra la sesion del usuario");
 } else {
-	$stream = new VideoStream($filePath);
+	$stream = new VideoStream($file);
 	$stream->start();
 }
 
