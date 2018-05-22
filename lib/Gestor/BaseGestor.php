@@ -104,11 +104,11 @@ Class BaseGestor {
 	}
 
 	public function getDescargasActivas() {
-		return $this->getTorrentDao()->getDescargasActivas($this->getConexion());
+		return $this->getTorrentDao()->getDescargasActivas($this->getConexion(), $_SESSION["idUsuario"]);
 	}
 
 	public function getDescargasFinalizadas() {
-		return $this->getTorrentDao()->getDescargasFinalizadas($this->getConexion());
+		return $this->getTorrentDao()->getDescargasFinalizadas($this->getConexion(), $_SESSION["idUsuario"]);
 	}
 }
 ?>

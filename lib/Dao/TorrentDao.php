@@ -85,9 +85,9 @@ Class TorrentDao {
         }
     }
 
-    public function getDescargasActivas($conn) {
+    public function getDescargasActivas($conn, $idUsuario) {
         $ret = 0;
-        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 0";
+        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 0 AND idUsuario = ". $idUsuario ." ";
 
         $result = $conn->query($sql);
 
@@ -100,9 +100,9 @@ Class TorrentDao {
         return $ret;
     }
 
-    public function getDescargasFinalizadas($conn) {
+    public function getDescargasFinalizadas($conn, $idUsuario) {
         $ret = 0;
-        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 1";
+        $sql = "SELECT count(idTorrent) as numTorrents FROM Torrent WHERE finalizado = 1 AND idUsuario = ". $idUsuario ." ";
 
         $result = $conn->query($sql);
 

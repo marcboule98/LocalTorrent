@@ -69,6 +69,10 @@ Class ConfiguracionVO {
 	}
 
 	public function getTransmissionPuerto() {
+		if(empty($this->transmissionPuerto)) {
+			$this->transmissionPuerto = "null";
+		}
+
 		return $this->transmissionPuerto;
 	}
 

@@ -42,7 +42,11 @@ Class ConfiguracionCtl extends BaseCtl {
 		$this->getConfiguracionVO()->setIdUsuario($_SESSION["idUsuario"]);
 		
 		if(isset($_POST["rutaDescargas"]) && is_dir($_POST["rutaDescargas"])) {
-			$this->getConfiguracionVO()->setRutaDescargas(Utils::eliminarCaracteresEspeciales($_POST["rutaDescargas"]));
+			if(is_writable($_POST["rutaDescargas"]) && is_readable($_POST["rutaDescargas"])) {
+				$this->getConfiguracionVO()->setRutaDescargas(Utils::eliminarCaracteresEspeciales($_POST["rutaDescargas"]));
+			} else {
+				throw new Exception("La ruta inidica no tiene permisos de escritura i/o lectura.");
+			}
 		} else {
 			throw new Exception("La ruta indicada no existe!");
 		}

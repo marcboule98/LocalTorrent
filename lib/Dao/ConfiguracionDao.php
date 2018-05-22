@@ -23,7 +23,7 @@ Class ConfiguracionDao {
 	}
 
 	public function update($conn, $valueObject) {
-		$sql = "UPDATE Configuracion SET rutaDescargas = '". $valueObject->getRutaDescargas() ."', recibirEmailFinalizados = ". $valueObject->getRecibirEmailFinalizados() .", host = '". $valueObject->getTransmissionHost() ."', puerto = '". $valueObject->getTransmissionPuerto() ."', usuario = '". $valueObject->getTransmissionUsuario() ."', password = '". $valueObject->getTransmissionPassword() ."' WHERE idUsuario = ". $valueObject->getIdUsuario() ." ";
+		$sql = "UPDATE Configuracion SET rutaDescargas = '". $valueObject->getRutaDescargas() ."', recibirEmailFinalizados = ". $valueObject->getRecibirEmailFinalizados() .", host = '". $valueObject->getTransmissionHost() ."', puerto = ". $valueObject->getTransmissionPuerto() .", usuario = '". $valueObject->getTransmissionUsuario() ."', password = '". $valueObject->getTransmissionPassword() ."' WHERE idUsuario = ". $valueObject->getIdUsuario() ." ";
 
 		if (!$conn->query($sql)) {
 			throw new Exception("<b>Error al guardar:</b> " . $conn->error);
@@ -31,7 +31,7 @@ Class ConfiguracionDao {
 	}
 
 	public function insert($conn, $valueObject) {
-		$sql = "INSERT INTO Configuracion (idUsuario, rutaDescargas, recibirEmailFinalizados, host, puerto, usuario, password) VALUES (". $valueObject->getIdUsuario() .", '". $valueObject->getRutaDescargas() ."', '". $valueObject->getRecibirEmailFinalizados() ."', '". $valueObject->getTransmissionHost() ."', '". $valueObject->getTransmissionPuerto() ."', '". $valueObject->getTransmissionUsuario() ."', '". $valueObject->getTransmissionPassword() ."')";
+		$sql = "INSERT INTO Configuracion (idUsuario, rutaDescargas, recibirEmailFinalizados, host, puerto, usuario, password) VALUES (". $valueObject->getIdUsuario() .", '". $valueObject->getRutaDescargas() ."', '". $valueObject->getRecibirEmailFinalizados() ."', '". $valueObject->getTransmissionHost() ."', ". $valueObject->getTransmissionPuerto() .", '". $valueObject->getTransmissionUsuario() ."', '". $valueObject->getTransmissionPassword() ."')";
 
 		if (!$conn->query($sql)) {
 			throw new Exception("<b>Error al guardar:</b> " . $conn->error);

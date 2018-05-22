@@ -53,7 +53,7 @@ $ctl = new ConfiguracionCtl();
 	  		
 	  		<div class="groupInput">
 	  			<label>Puerto</label>
-	  			<input type="text" name="transmissionPuerto" placeholder="Puerto" value="<?php echo $ctl->getConfiguracionVO()->getTransmissionPuerto(); ?>">
+	  			<input type="text" name="transmissionPuerto" placeholder="Puerto" value="<?php echo ($ctl->getConfiguracionVO()->getTransmissionPuerto() == 'null') ? '' : $ctl->getConfiguracionVO()->getTransmissionPuerto() ; ?>">
 	  		</div>
 
 	  		<div class="groupInput">

@@ -38,7 +38,7 @@ class Utils {
 		$string = preg_replace("/\s/", '', $string);
 
 		if(empty($string)) {
-			$string = null;
+			$string = NULL;
 		}
 
 		return $string;
