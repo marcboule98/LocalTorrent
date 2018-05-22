@@ -17,6 +17,10 @@ $("#search").on("keyup", function(){
 });
 
 function obtenerArchivos(ruta, titulo) {
+	if($("video").length > 0) {
+		location.href = "#openModal";
+	}
+
 	$.ajax({
 		url : "ajax.php?peticion_ajax_key=obtener_rutas_contenido&ruta=" + ruta,
 		type: "GET",
@@ -75,7 +79,7 @@ function mostrarVideo(url){
 	}
 
 	$("#openModal > div").html(`
-		<a href="#close" title="Cerrar" class="close">X</a>
+		<a href="#close" title="Cerrar" class="close" onclick="pausarVideo()">X</a>
 		<video controls autoplay controlsList="nodownload">
 	  		<source src="reproductor.php?tipo=`+ tipo +`&url=`+ url +`" type="`+ tipo +`">
 			Tu navegador no soporta video. Recomendados. Chrome / Firefox / Opera
