@@ -1,5 +1,6 @@
 var timeoutSearch;
 var ajaxRequests = [];
+$("#minCaracteres").hide();
 
 $.ajaxSetup({
     beforeSend: function(jqXHR) {
@@ -12,12 +13,19 @@ $('#search').on('keyup', function(){
 
 	timeoutSearch = setTimeout(function(){
 		var numPaginaEliteTorrent = 0;
-		$("#torrents").html('');
-		$("#loadingImg").show();
-		cancelarAjax();
+		var valorBuscar = $('#search').val().trim();
 
-		mejorTorrent($('#search').val().trim());
-		eliteTorrent($('#search').val().trim(), numPaginaEliteTorrent);
+		if(valorBuscar.length >= 3) {
+			$("#minCaracteres").hide();
+			$("#torrents").html('');
+			$("#loadingImg").show();
+			cancelarAjax();
+
+			mejorTorrent(valorBuscar);
+			eliteTorrent(valorBuscar, numPaginaEliteTorrent);
+		} else {
+			$("#minCaracteres").show();
+		}
 	}, 300);
 });
 
