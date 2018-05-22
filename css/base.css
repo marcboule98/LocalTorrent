@@ -307,4 +307,8 @@ div.info {
 		border-left: 10px solid green;
 		padding: 15px;
 	}
+
+	ul#listaVideos > li {
+		font-size: 1.7em;
+	}
 }

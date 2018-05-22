@@ -112,6 +112,17 @@ Class ControladorAjax extends BaseCtl {
 							throw new Exception("No se puede reanudar/pausar la descarga.");
 						}
 						break;
+
+					case OBTENER_RUTAS_CONTENIDO:
+						if (isset($_GET["ruta"])) {
+							$arrayRutasBuenas = array();
+							$this->buscarEnDirectorio($_GET["ruta"], $arrayRutasBuenas);
+							echo json_encode($arrayRutasBuenas);
+						} else {
+							throw new Exception("No se encuentra ruta indicada.");	
+						}	
+						break;
+						
 					default:
 						throw new Exception("No se ha encontrado key");
 						break;
@@ -216,6 +227,39 @@ Class ControladorAjax extends BaseCtl {
 
 	private function getPathTorrentTemp() {
 		return BASE_PATH . "tmpTorrent.torrent";
+	}
+
+	private function buscarEnDirectorio($dir, &$arrayRutasBuenas){
+	    $ffs = scandir($dir);
+
+	    unset($ffs[array_search('.', $ffs, true)]);
+	    unset($ffs[array_search('..', $ffs, true)]);
+
+	    if (count($ffs) < 1) {
+	        return;
+	    }
+
+	    foreach($ffs as $ff){
+	    	$ruta = $dir.'/'.$ff;
+
+	        if(is_dir($ruta)) {
+	        	$this->buscarEnDirectorio($ruta, $arrayRutasBuenas);
+	        } else {
+	        	$this->extensionVideo($ruta, $arrayRutasBuenas);
+	        }
+	    }
+	}
+
+	private function extensionVideo($ruta, &$arrayRutasBuenas){
+		$tipos = array("avi", "mp4", "mkv", "mpeg", "mpg", "webm", "ogg", "mov");
+
+		if(!is_dir($ruta)){
+			$tipo = pathinfo($ruta);
+
+			if (in_array($tipo["extension"], $tipos)) {
+				array_push($arrayRutasBuenas, $ruta);
+			}
+		}
 	}
 }
 

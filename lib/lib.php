@@ -9,7 +9,7 @@ define("DESCARGAR_TORRENT", "descargar_torrent");
 define("OBTENER_TORRENTS", "obtener_torrents");
 define("ELIMINAR_TORRENT", "eliminar_torrent");
 define("PAUSA_PLAY_TORRENT", "pausa_play_torrent");
-
+define("OBTENER_RUTAS_CONTENIDO", "obtener_rutas_contenido");
 /* INCLUDES */
 $files = glob(BASE_PATH . 'Utils/*.php');
 
