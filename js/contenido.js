@@ -76,11 +76,17 @@ function mostrarVideo(url){
 
 	$("#openModal > div").html(`
 		<a href="#close" title="Cerrar" class="close">X</a>
-		<video controls>
+		<video controls autoplay preload="preload">
 	  		<source src="reproductor.php?tipo=`+ tipo +`&url=`+ url +`" type="`+ tipo +`">
 			Tu navegador no soporta video. Recomendados. Chrome / Firefox / Opera
 		</video>
 	`);
+}
+
+function pausarVideo() {
+	$("video").each(function(){
+    	$(this).get(0).pause();
+	});
 }
 
 function mostrarErrores(error){

@@ -15,7 +15,7 @@ $resultado = $ctl->obtenerDescargasFinalizadas();
 	<?php require_once 'includes/sideMenu.php'; ?>
 	<div id="openModal" class="modalDialog">
 		<div>
-			<a href="#close" title="Cerrar" class="close">X</a>
+			<a href="#close" onclick="pausarVideo()" title="Cerrar" class="close">X</a>
 			<h2 id="tituloPelicula"></h2>
 			<p id="infoClick">Haz click sobre el archivo que quiera reproducir.</p>
 			<ul id="listaVideos"></ul>
