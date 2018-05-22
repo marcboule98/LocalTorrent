@@ -67,11 +67,11 @@ function mostrarVideo(url){
 	var tipo = "video/mp4";
 
 	if (url.indexOf(".mp4") || url.indexOf(".mpg") || url.indexOf(".mpeg")) {
-		tipo = "video/mp4";
+		tipo = "video/mp4; codecs='avc1.42E01E, mp4a.40.2'";
 	}else if(url.indexOf(".ogg")){
 		tipo = "video/ogg";
 	}else if (url.indexOf(".webm")) {
-		tipo = "video/webm";
+		tipo = "video/webm; codecs='vp8, vorbis'";
 	}else if (url.indexOf(".mkv")) {
 		tipo = "video/x-matroska; codecs='theora, vorbis'";
 	}else if (url.indexOf(".mov")) {

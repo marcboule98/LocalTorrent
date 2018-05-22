@@ -251,7 +251,7 @@ Class ControladorAjax extends BaseCtl {
 	}
 
 	private function extensionVideo($ruta, &$arrayRutasBuenas){
-		$tipos = array("avi", "mp4", "mkv", "mpeg", "mpg", "webm", "ogg", "mov");
+		$tipos = array("mp4", "mkv", "mpeg", "mpg", "webm", "ogg", "mov");
 
 		if(!is_dir($ruta)){
 			$tipo = pathinfo($ruta);
