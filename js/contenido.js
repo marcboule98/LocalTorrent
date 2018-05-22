@@ -30,8 +30,7 @@ function obtenerArchivos(ruta, titulo) {
 
 				return;
 			}
-
-			console.log(data);
+			
 			mostrarArchivosVideo(data);
 			$("#tituloPelicula").text(titulo);
 			location.href = "#openModal";
@@ -55,7 +54,6 @@ function mostrarArchivosVideo(data){
 }
 
 function mostrarVideo(url){
-	console.log("url->",url);
 	var tipo = "video/mp4";
 
 	if (url.indexOf(".mp4") || url.indexOf(".mpg") || url.indexOf(".mpeg")) {
