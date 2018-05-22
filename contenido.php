@@ -17,7 +17,7 @@ $resultado = $ctl->obtenerDescargasFinalizadas();
 		<div>
 			<a href="#close" title="Cerrar" class="close">X</a>
 			<h2 id="tituloPelicula"></h2>
-			<p id="infoClick">Haz click sobre el archivo que quiera reproducir</p>
+			<p id="infoClick">Haz click sobre el archivo que quiera reproducir.</p>
 			<ul id="listaVideos"></ul>
 		</div>
 	</div>

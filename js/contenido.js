@@ -30,7 +30,7 @@ function obtenerArchivos(ruta, titulo) {
 
 				return;
 			}
-			
+
 			mostrarArchivosVideo(data);
 			$("#tituloPelicula").text(titulo);
 			location.href = "#openModal";
@@ -40,8 +40,14 @@ function obtenerArchivos(ruta, titulo) {
 }
 
 function mostrarArchivosVideo(data){
-	$("#infoClick").show();
 	$("#listaVideos").html("");
+	$("#infoClick").show();
+
+	if(data.length > 0) {
+		$("#infoClick").text("Haz click sobre el archivo que quiera reproducir.");
+	} else {
+		$("#infoClick").text("No hay ningun archivo disponible para visualizar.");
+	}
 
 	for (var i = 0; i < data.length; i++) {
 		var titulo = data[i].split("/");
@@ -92,4 +98,3 @@ function mostrarInfo(info){
 		}
 	}
 }
-
