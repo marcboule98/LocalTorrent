@@ -10,7 +10,7 @@ Class GestorContenido extends BaseGestor {
 	}
 
 	public function eliminarTorrent($idTorrent, $rutaDescargas) {
-		if(is_dir($rutaDescargas) && ) {
+		if(is_dir($rutaDescargas)) {
 			if(rmdir($rutaDescargas)) {
 				$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
 			} else {
