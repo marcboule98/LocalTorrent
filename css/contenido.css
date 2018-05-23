@@ -31,6 +31,11 @@ div.item:hover {
 	transform: scale(1.04);
 }
 
+.verModal{
+	opacity: 1 !important;
+	pointer-events: auto !important;
+}
+
 .modalDialog {
 	position: fixed;
 	top: 0;
@@ -44,11 +49,6 @@ div.item:hover {
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
 	pointer-events: none;
-}
-
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
 }
 
 .modalDialog > div {
@@ -84,12 +84,30 @@ video {
 	background: #68385b; 
 }
 
-.modalDialog li {
-	cursor: pointer;
+.volver {
+    font-size: 1em;
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: relative;
+    clear: both;
+    right: 30px;
+    padding: 4px 6px;
+    text-align: center;
+    top: -15px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+.volver:hover{
+	background: #68385b;
+
 }
 
 .modalDialog li {
-
+	cursor: pointer;
 }
 
 ul#listaVideos > li {
@@ -118,5 +136,16 @@ input[type=text] {
 		border-radius: 50%;
 		top: -25px;
 		right: -25px;
+	}
+
+	.volver {
+	    font-size: 2.5em;
+	    border-radius: 50%;
+	    padding: 12px 15px;
+	    right: 45px;
+	}
+
+	.modalDialog > div {
+		margin: 5% auto;
 	}
 }
