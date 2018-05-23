@@ -16,7 +16,7 @@ $("#search").on("keyup", function(){
 	});
 });
 
-function obtenerArchivos(ruta, titulo) {
+function obtenerArchivos(idTorrent, ruta, titulo) {
 	$.ajax({
 		url : "ajax.php?peticion_ajax_key=obtener_rutas_contenido&ruta=" + ruta,
 		type: "GET",
@@ -31,15 +31,17 @@ function obtenerArchivos(ruta, titulo) {
 				return;
 			}
 
-			mostrarArchivosVideo(data, ruta, titulo);
+			mostrarArchivosVideo(data, ruta, titulo, idTorrent);
 			$("#tituloPelicula").text(titulo);
 			$("#openModal").addClass("verModal");
+			$("#idTorrentEliminar").val(idTorrent);
+			$("#rutaDescargaEliminar").val(ruta);
 		},
 		error: function(data) {}
 	});	
 }
 
-function mostrarArchivosVideo(data, ruta, titulo){
+function mostrarArchivosVideo(data, ruta, titulo, idTorrent){
 	$("#listaVideos").html("");
 	$("#infoClick").show();
 
@@ -54,31 +56,29 @@ function mostrarArchivosVideo(data, ruta, titulo){
 
 		titulo = titulo[titulo.length-1];
 		$("#listaVideos").append(
-			`<li onclick="mostrarVideo('`+ data[i] +`', '`+ ruta +`', '`+ titulo +`')">`+ titulo +`</li>`
+			`<li onclick="mostrarVideo('`+ data[i] +`', '`+ ruta +`', '`+ titulo +`', '`+ idTorrent +`')">`+ titulo +`</li>`
 		);
 	}
 }
 
-function mostrarVideo(url, ruta, titulo){
+function mostrarVideo(url, ruta, titulo, idTorrent){
 	$("#openModal").removeClass("verModal");
 	$("#openModalVideo").addClass("verModal");
 
 	var tipo = "video/mp4";
 
-	if (url.indexOf(".mp4") > -1 || url.indexOf(".mpg") > -1 || url.indexOf(".mpeg")> -1) {
+	if (url.indexOf(".mp4") > -1 || url.indexOf(".mpg") > -1 || url.indexOf(".mpeg") > -1) {
 		tipo = "video/mp4";
-	}else if(url.indexOf(".ogg")){
+	} else if(url.indexOf(".ogg") > -1){
 		tipo = "video/ogg";
-	}else if (url.indexOf(".webm")) {
-		tipo = "video/webm; codecs='vp8, vorbis'";
-	}else if (url.indexOf(".mkv")) {
-		tipo = "video/x-matroska; codecs='theora, vorbis'";
-	}else if (url.indexOf(".mov")) {
+	} else if (url.indexOf(".webm") > -1) {
+		tipo = "video/webm";
+	} else if (url.indexOf(".mov") > -1) {
 		tipo = "video/mov";
 	}
 
 	$("#openModalVideo > div").html(`
-			<a href="#" title="Cerrar" class="volver" onclick="volverOpenModal('`+ ruta +`', '`+ titulo +`')">
+			<a href="#" title="Cerrar" class="volver" onclick="volverOpenModal('`+ ruta +`', '`+ titulo +`', '`+ idTorrent +`')">
 				<i class="fa fa-arrow-circle-left"></i>
 			</a>
 			<a href="#" title="Cerrar" class="close" onclick="pausarVideo()">X</a>
@@ -88,7 +88,7 @@ function mostrarVideo(url, ruta, titulo){
 			</video>`);
 }
 
-function volverOpenModal(ruta, titulo) {
+function volverOpenModal(ruta, titulo, idTorrent) {
 	pausarVideo();
 
 	$.ajax({
@@ -108,6 +108,8 @@ function volverOpenModal(ruta, titulo) {
 			mostrarArchivosVideo(data, ruta);
 			$("#tituloPelicula").text(titulo);
 			$("#openModal").addClass("verModal");
+			$("#idTorrentEliminar").val(idTorrent);
+			$("#rutaDescargaEliminar").val(ruta);
 		},
 		error: function(data) {}
 	});	

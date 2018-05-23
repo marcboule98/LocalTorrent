@@ -58,15 +58,24 @@ Class TorrentDao {
         }
     }
 
+    public function eliminarTorrentByIdTorrent($conn, $idTorrent) {
+        $sql = "DELETE FROM Torrent WHERE idTorrent = '". $idTorrent ."'";
+        
+        if (!$conn->query($sql)) {
+            throw new Exception("<b>Error al eliminar:</b> " . $conn->error);
+        }
+    }
+
     public function obtenerDescargasFinalizadas($conn, $idUsuario) {
         $ret = array();
-        $sql = "SELECT nombre, imagen, CONCAT((SELECT rutaDescargas FROM Configuracion WHERE idUsuario = ".$idUsuario."),'/',codigoTorrent) AS rutaDescarga FROM Torrent WHERE idUsuario = ".$idUsuario." AND finalizado = 1";
+        $sql = "SELECT idTorrent, nombre, imagen, CONCAT((SELECT rutaDescargas FROM Configuracion WHERE idUsuario = ".$idUsuario."),'/',codigoTorrent) AS rutaDescarga FROM Torrent WHERE idUsuario = ".$idUsuario." AND finalizado = 1";
 
         $result = $conn->query($sql);
 
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 array_push($ret, array(
+                    "idTorrent" => $row["idTorrent"],
                     "nombre" => $row["nombre"],
                     "imagen" => $row["imagen"],
                     "rutaDescarga" => $row["rutaDescarga"]

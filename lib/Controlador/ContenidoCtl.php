@@ -4,7 +4,13 @@ Class ContenidoCtl extends BaseCtl {
 	private $gestor = null;
 
 	public function __construct() {
-
+		try {
+			if(isset($_POST["eliminarTorrent"])) {
+				$this->getGestor()->eliminarTorrent($_POST["idTorrent"], $_POST["rutaDescarga"]);
+			}
+		} catch (Exception $e) {
+			$this->errors[] = $e->getMessage();
+		}
 	}
 
 	private function getGestor() {

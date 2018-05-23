@@ -9,5 +9,14 @@ Class GestorContenido extends BaseGestor {
 		return $this->getGestorTorrent()->obtenerDescargasFinalizadas($_SESSION["idUsuario"]);
 	}
 
+	public function eliminarTorrent($idTorrent, $rutaDescargas) {
+		if(is_dir($rutaDescargas)) {
+			rmdir($rutaDescargas);
+			$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
+		} else {
+			throw new Exception("Error, la ruta <b>". $rutaDescargas ."</b> no existe.");
+		}
+	}
+
 }
 ?>
