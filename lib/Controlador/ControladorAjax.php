@@ -43,7 +43,7 @@ Class ControladorAjax extends BaseCtl {
 						$rutaDescargas = $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent();
 
 						if(!is_dir($rutaDescargas)) {
-							mkdir($rutaDescargas);
+							mkdir($rutaDescargas, 0777, true);
 						}
 
 						$response = $transmission->getClient()->call('torrent-add', array(
