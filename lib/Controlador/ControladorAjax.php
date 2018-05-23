@@ -40,10 +40,15 @@ Class ControladorAjax extends BaseCtl {
 						$torrent = $this->parseTorrent();
 
 						$transmission = $this->getTransmissionObject($configuracionVO);
+						$rutaDescargas = $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent();
+
+						if(!is_dir($rutaDescargas)) {
+							mkdir($rutaDescargas);
+						}
 
 						$response = $transmission->getClient()->call('torrent-add', array(
 						    'filename' => $this->getPathTorrentTemp(),
-						    'download-dir' => $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent()
+						    'download-dir' => $rutaDescargas
 						));
 
 						$this->eliminarTorrentTemp();
