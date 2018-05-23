@@ -14,16 +14,18 @@ $ctl = new LoginCtl();
 		<?php require_once 'includes/feedback.php' ?>
 		
 		<div id="login">
-			<form action="" method="POST">
+			<form action="" method="POST" id="formLogin">
 				<h1>Bienvenido - LocalTorrent</h1>
 				<div class="groupInput">
 					<label>Nombre</label>
-					<input type="text" name="nombre" placeholder="Nombre"><br>
+					<p id="nombreVacioLogin">El campo no puede estar vacio</p>
+					<input type="text" name="nombre" id="nombreLogin" placeholder="Nombre"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Contraseña</label>
-					<input type="password" name="password" placeholder="Contraseña"><br>
+					<p id="passwordVacioLogin">El campo no puede estar vacio</p>
+					<input type="password" name="password" id="passwordLogin" placeholder="Contraseña"><br>
 				</div>
 
 				<input type="submit" name="login" value="Iniciar Sesion"><br>
@@ -32,21 +34,24 @@ $ctl = new LoginCtl();
 		</div>
 
 		<div id="registro">
-			<form action="" method="POST">
+			<form action="" method="POST" id="formRegistro">
 				<h1>Registro - LocalTorrent</h1>
 				<div class="groupInput">
 					<label>Nombre</label>
-					<input type="text" name="nombre" placeholder="Nombre"><br>
+					<p id="nombreVacioRegistro">El campo no puede estar vacio</p>
+					<input type="text" name="nombre" id="nombreRegistro" placeholder="Nombre"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Email</label>
-					<input type="text" name="email" placeholder="Email"><br>
+					<p id="emailInvalidoRegistro">El email no es valido</p>
+					<input type="text" name="email" id="emailRegistro" placeholder="Email"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Contraseña</label>
-					<input type="password" name="password" placeholder="Contraseña"><br>
+					<p id="passwordVacioRegistro">El campo no puede estar vacio</p>
+					<input type="password" name="password" id="passwordRegistro" placeholder="Contraseña"><br>
 				</div>
 
 				<input type="submit" name="registro" value="Nuevo Usuario"><br>

@@ -14,10 +14,10 @@ $('#search').on('keyup', function(){
 	timeoutSearch = setTimeout(function(){
 		var numPaginaEliteTorrent = 0;
 		var valorBuscar = $('#search').val().trim();
+		$("#torrents").html('');
 
 		if(valorBuscar.length >= 3) {
 			$("#minCaracteres").hide();
-			$("#torrents").html('');
 			$("#loadingImg").show();
 			cancelarAjax();
 
@@ -25,6 +25,8 @@ $('#search').on('keyup', function(){
 			eliteTorrent(valorBuscar, numPaginaEliteTorrent);
 		} else {
 			$("#minCaracteres").show();
+			$("#loadingImg").hide();
+			cancelarAjax();
 		}
 	}, 300);
 });

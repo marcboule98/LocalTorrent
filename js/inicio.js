@@ -1,4 +1,4 @@
-setInterval(obtener_torrents, 5000);
+setInterval(obtener_torrents, 2000);
 
 obtener_torrents();
 
@@ -72,6 +72,15 @@ function actualizarTorrents(arrayTorrents) {
 	$("#torrents").html("");
 
 	for (var i = 0; i < arrayTorrents.length; i++) {
+		var tiempoEstimado = 0
+		if(arrayTorrents[i].tiempoEstimado.indexOf("-") == -1){
+			if(arrayTorrents[i].tiempoEstimado >= 60) {
+				tiempoEstimado = (arrayTorrents[i].tiempoEstimado / 60) + " H";
+			} else {
+				tiempoEstimado = arrayTorrents[i].tiempoEstimado + " Min";
+			}
+		} 
+
 		$("#torrents").append(`<tr>
 			<td>`+ arrayTorrents[i].nombre +`</td>
 			<td>
@@ -80,7 +89,7 @@ function actualizarTorrents(arrayTorrents) {
 				</div>
 			</td>
 			<td>`+ arrayTorrents[i].ratioDescarga.toFixed(2) +` MB/s</td>
-			<td>`+ (arrayTorrents[i].tiempoEstimado == -1 ? 0 : arrayTorrents[i].tiempoEstimado) +` Min</td>
+			<td>`+ tiempoEstimado +`</td>
 			<td><i class="fa fa-`+ (arrayTorrents[i].isPausado == true ? "play" : "pause") +`" onclick="pausaPlay(`+ arrayTorrents[i].idTorrent +`)"></i></td>
 			<td><i class="fa fa-trash" onclick="eliminarTorrent(`+ arrayTorrents[i].idTorrent +`, '`+ arrayTorrents[i].rutaBBDD +`')"></i></td>
 		</tr>`);

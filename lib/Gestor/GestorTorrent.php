@@ -25,9 +25,14 @@ Class GestorTorrent extends BaseGestor {
 		return $this->getTorrentDao()->obtenerDescargasFinalizadas($this->getConexion(), $idUsuario);
 	}
 
-	public function updateTorrentsFinalizados($torrents) {
+	public function updateTorrentsFinalizados($torrents, $transmission) {
 		foreach ($torrents as $torrent) {
 			if($torrent["finalizado"] == true) {
+				$transmission->getClient()->call('torrent-remove', array(
+					'ids' => $torrent["idTorrent"],
+					'delete-local-data' => false
+				));
+
 				$this->getTorrentDao()->updateTorrentsFinalizados($this->getConexion(), $torrent["rutaBBDD"]);
 			}
 		}

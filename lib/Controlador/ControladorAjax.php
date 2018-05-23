@@ -167,13 +167,13 @@ Class ControladorAjax extends BaseCtl {
 			}
 		}
 
-		$this->updateTorrentsFinalizados($torrents);
+		$this->updateTorrentsFinalizados($torrents, $transmission);
 
 		return $torrents;
 	}
 
-	private function updateTorrentsFinalizados($torrents) {
-		$this->getGestor()->updateTorrentsFinalizados($torrents);
+	private function updateTorrentsFinalizados($torrents, $transmission) {
+		$this->getGestor()->updateTorrentsFinalizados($torrents, $transmission);
 	}
 
 	private function getTransmissionObject($configuracionVO) {

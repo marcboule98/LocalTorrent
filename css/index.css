@@ -7,6 +7,15 @@ input[type=text], input[type=password] {
 	width: 100%;
 }
 
+#emailInvalidoRegistro, #nombreVacioRegistro, #passwordVacioRegistro, #passwordVacioLogin, #nombreVacioLogin {
+	color: red;
+	display: none;
+}
+
+#registro {
+	display: none;
+}
+
 @media screen and (max-device-width: 414px) {
 	.container {
 		width: 95%;
