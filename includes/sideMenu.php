@@ -40,7 +40,7 @@ if(!isset($_SESSION["idUsuario"])) {
 	<p class="copyright">LocalTorrent · Copyright 2018</p>
 	<hr>
 	<div id="logoContainer">
-		<img src="./css/LogoLocalTorrent.png" alt="Logo LocalTorrent">
+		<img src="./css/logoLocalTorrent.png" alt="Logo LocalTorrent">
 	</div>
 </div>
 

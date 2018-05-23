@@ -10,9 +10,12 @@ Class GestorContenido extends BaseGestor {
 	}
 
 	public function eliminarTorrent($idTorrent, $rutaDescargas) {
-		if(is_dir($rutaDescargas)) {
-			rmdir($rutaDescargas);
-			$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
+		if(is_dir($rutaDescargas) && ) {
+			if(rmdir($rutaDescargas)) {
+				$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
+			} else {
+				throw new Exception("No se puede eliminar la carpeta del torrent.");
+			}
 		} else {
 			throw new Exception("Error, la ruta <b>". $rutaDescargas ."</b> no existe.");
 		}
