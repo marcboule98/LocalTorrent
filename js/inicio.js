@@ -73,7 +73,7 @@ function actualizarTorrents(arrayTorrents) {
 
 	for (var i = 0; i < arrayTorrents.length; i++) {
 		var tiempoEstimado = 0
-		if(arrayTorrents[i].tiempoEstimado.indexOf("-") == -1){
+		if(arrayTorrents[i].tiempoEstimado.toString().indexOf("-") == -1){
 			if(arrayTorrents[i].tiempoEstimado >= 60) {
 				tiempoEstimado = (arrayTorrents[i].tiempoEstimado / 60) + " H";
 			} else {
