@@ -15,6 +15,16 @@ h1 {
 	padding: 40px 0px;
 }
 
+#logoContainer {
+	text-align: center;
+}
+
+#logoContainer > img {
+	width: 50%;
+	height: auto;
+	margin-top: 20px;
+}
+
 .sideMenu {
 	width: 20%;
 	min-width: 235px;

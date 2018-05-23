@@ -38,6 +38,10 @@ if(!isset($_SESSION["idUsuario"])) {
 	<p>Descargas activas: <span><?php echo $ctl->getBaseGestor()->getDescargasActivas(); ?></span></p>
 	<p>Descargas finalizadas: <span><?php echo $ctl->getBaseGestor()->getDescargasFinalizadas(); ?></span></p>
 	<p class="copyright">LocalTorrent · Copyright 2018</p>
+	<hr>
+	<div id="logoContainer">
+		<img src="./css/LogoLocalTorrent.png" alt="Logo LocalTorrent">
+	</div>
 </div>
 
 <div class="sideMenuHide">
