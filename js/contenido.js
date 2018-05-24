@@ -81,7 +81,7 @@ function mostrarVideo(url, ruta, titulo, idTorrent){
 			<a href="#" title="Cerrar" class="volver" onclick="volverOpenModal('`+ ruta +`', '`+ titulo +`', '`+ idTorrent +`')">
 				<i class="fa fa-arrow-circle-left"></i>
 			</a>
-			<a href="#" title="Cerrar" class="close" onclick="pausarVideo()">X</a>
+			<a href="#" title="Cerrar" class="close" onclick="eliminarVideo()">X</a>
 			<video controls autoplay controlsList="nodownload" preload="metadata">
 		  		<source src="reproductor.php?tipo=`+ tipo +`&url=`+ url +`" type="`+ tipo +`">
 				Tu navegador no soporta video. Recomendados. Chrome / Firefox / Opera
@@ -89,7 +89,7 @@ function mostrarVideo(url, ruta, titulo, idTorrent){
 }
 
 function volverOpenModal(ruta, titulo, idTorrent) {
-	pausarVideo();
+	eliminarVideo();
 
 	$.ajax({
 		url : "ajax.php?peticion_ajax_key=obtener_rutas_contenido&ruta=" + ruta,
@@ -115,9 +115,9 @@ function volverOpenModal(ruta, titulo, idTorrent) {
 	});	
 }
 
-function pausarVideo() {
+function eliminarVideo() {
 	$("video").each(function(){
-    	$(this).get(0).pause();
+    	$(this).remove();
 	});
 
 	$("#openModal").removeClass("verModal");

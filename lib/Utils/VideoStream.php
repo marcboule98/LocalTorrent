@@ -18,6 +18,10 @@ class VideoStream
     {
         $this->path = $filePath;
     }
+
+    function __destruct () {
+        $this->end();
+    }
      
     /**
      * Open stream
