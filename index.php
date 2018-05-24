@@ -29,7 +29,7 @@ $ctl = new LoginCtl();
 				</div>
 
 				<input type="submit" name="login" value="Iniciar Sesion"><br>
-				<p><a href="#" id="registrar">Aun no tengo usuario.</a></p>
+				<p><a href="#" id="registrar">Aún no tengo usuario.</a></p>
 			</form>
 		</div>
 
@@ -38,19 +38,19 @@ $ctl = new LoginCtl();
 				<h1>Registro - LocalTorrent</h1>
 				<div class="groupInput">
 					<label>Nombre</label>
-					<p id="nombreVacioRegistro">El campo no puede estar vacio</p>
+					<p id="nombreVacioRegistro">El campo no puede estar vacío</p>
 					<input type="text" name="nombre" id="nombreRegistro" placeholder="Nombre"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Email</label>
-					<p id="emailInvalidoRegistro">El email no es valido</p>
+					<p id="emailInvalidoRegistro">El email no es válido</p>
 					<input type="text" name="email" id="emailRegistro" placeholder="Email"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Contraseña</label>
-					<p id="passwordVacioRegistro">El campo no puede estar vacio</p>
+					<p id="passwordVacioRegistro">El campo no puede estar vacío</p>
 					<input type="password" name="password" id="passwordRegistro" placeholder="Contraseña"><br>
 				</div>
 

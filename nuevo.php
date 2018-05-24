@@ -24,7 +24,7 @@ $ctl = new NuevoCtl();
 		<table>
 			<thead>
 				<tr>
-					<th>Titulo</th>
+					<th>Título</th>
 					<th>Idioma</th>
 					<th>Calidad</th>
 					<th>Tamaño</th>

@@ -5,7 +5,7 @@ $ctl = new ConfiguracionCtl();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Configuracion - LocalTorrent</title>
+	<title>Configuración - LocalTorrent</title>
 	<?php require_once 'includes/header.php'; ?>
 </head>
 <body>
@@ -14,7 +14,7 @@ $ctl = new ConfiguracionCtl();
 	<div class="container">
 		<?php require_once 'includes/feedback.php' ?>
 
-		<h1>Configuracion</h1>
+		<h1>Configuración</h1>
 		<form action="" method="POST">
 			<div class="groupInput">
 				<label>Ruta Descargas</label>
@@ -24,10 +24,10 @@ $ctl = new ConfiguracionCtl();
 			<label class="customCheckBox">
 	  			<input type="checkbox" name="recibirEmailFinalizados" value="1" <?php echo ($ctl->getConfiguracionVO()->getRecibirEmailFinalizados() == 1 ? 'checked="checked"' : ''); ?>>
 	  			<span class="customCheck"><i class="fa fa-check"></i></span>
-	  			<p>Recibir un email cuando las descargas finalizen.</p>
+	  			<p>Recibir un email cuando las descargas finalicen.</p>
 			</label>
 
-	  		<br><h2>Configuracion Base de Datos</h2>
+	  		<br><h2>Configuración Base de Datos</h2>
 
 	  		<div class="groupInput">
 	  			<label>Host</label>
@@ -44,7 +44,7 @@ $ctl = new ConfiguracionCtl();
 	  			<input type="password" name="password" placeholder="Contraseña" value="<?php echo $ctl->getConfiguracionVO()->getPassword(); ?>">
 	  		</div>
 
-	  		<br><h2>Configuracion Transmission</h2>
+	  		<br><h2>Configuración Transmission</h2>
 
 	  		<div class="groupInput">
 	  			<label>Host</label>
