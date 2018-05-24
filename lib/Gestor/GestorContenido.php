@@ -15,11 +15,7 @@ Class GestorContenido extends BaseGestor {
 			array_map('unlink', glob($rutaDescargas . "/*.*"));
 			rmdir($rutaDescargas);
 			
-			if(!is_dir($rutaDescargas)) {
-				$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
-			} else {
-				throw new Exception("No se puede eliminar la carpeta de descargas");
-			}
+			$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
 		} else {
 			throw new Exception("Error, la ruta <b>". $rutaDescargas ."</b> no existe.");
 		}

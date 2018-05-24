@@ -77,9 +77,9 @@ function actualizarTorrents(arrayTorrents) {
 
 		if(tempTiempo.toString().indexOf("-") == -1){
 			if(tempTiempo >= 3600) {
-				tiempoEstimado = (tempTiempo / 3600).toFixed(2) + " H";
+				tiempoEstimado = (tempTiempo / 3600).toFixed(0) + " H";
 			} else if(tempTiempo >= 60) {
-				tiempoEstimado = (tempTiempo / 60).toFixed(2) + " Min";
+				tiempoEstimado = (tempTiempo / 60).toFixed(0) + " Min";
 			} else {
 				tiempoEstimado = tempTiempo + " Seg";
 			}
