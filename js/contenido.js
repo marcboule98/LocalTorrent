@@ -105,7 +105,7 @@ function volverOpenModal(ruta, titulo, idTorrent) {
 				return;
 			}
 
-			mostrarArchivosVideo(data, ruta);
+			mostrarArchivosVideo(data, ruta, idTorrent);
 			$("#tituloPelicula").text(titulo);
 			$("#openModal").addClass("verModal");
 			$("#idTorrentEliminar").val(idTorrent);
