@@ -11,8 +11,8 @@ Class GestorContenido extends BaseGestor {
 
 	public function eliminarTorrent($idTorrent, $rutaDescargas) {
 		if(is_dir($rutaDescargas)) {
-			array_map('unlink', glob($rutaDescargas . "/*.*"))
-			
+			array_map('unlink', glob($rutaDescargas . "/*.*"));
+
 			if(rmdir($rutaDescargas)) {
 				$this->getGestorTorrent()->eliminarTorrentByIdTorrent($idTorrent);
 			} else {
