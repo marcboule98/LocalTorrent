@@ -41,7 +41,15 @@ Class EliteTorrent {
 				"calidad" => "",
 				"idioma" => "-"
 			);
-			$tempArray["img"] = $key->children(0)->children(0)->src;
+			
+			$tempImg = $key->children(0)->children(0)->src;
+
+			if(strpos($tempImg, 'https://www.elitetorrent.biz') !== false) {
+				$tempArray["img"] = "https://www.elitetorrent.biz" . $tempImg;
+			} else {
+				$tempArray["img"] = $tempImg;
+			}
+
 			$idioma = $key->children(1)->children(0)->children(0)->attr["title"];
 			$tempArray["idioma"] = $this->obtenerIdioma($idioma);
 
