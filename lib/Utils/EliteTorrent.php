@@ -44,7 +44,7 @@ Class EliteTorrent {
 			
 			$tempImg = $key->children(0)->children(0)->src;
 
-			if(strpos($tempImg, 'https://www.elitetorrent.biz') !== false) {
+			if(strpos($tempImg, 'https://www.elitetorrent.biz') === false) {
 				$tempArray["img"] = "https://www.elitetorrent.biz" . $tempImg;
 			} else {
 				$tempArray["img"] = $tempImg;
