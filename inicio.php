@@ -18,7 +18,7 @@ $ctl = new InicioCtl();
 		<table>
 			<thead>
 				<tr>
-					<th>Titulo</th>
+					<th>Título</th>
 					<th>Progreso</th>
 					<th>Descarga</th>
 					<th>Restante</th>

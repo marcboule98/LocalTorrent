@@ -29,7 +29,7 @@ Class LoginCtl extends BaseCtl {
     			header("Location: inicio.php");
     		}
     	} else {
-    		throw new Exception("La combinacion usuario / contraseña no es correcta.");
+    		throw new Exception("La combinación usuario / contraseña no es correcta.");
     	}
 	}
 

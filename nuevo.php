@@ -16,7 +16,7 @@ $ctl = new NuevoCtl();
 		<h1>Nuevo Contenido</h1>
 
 		<div>
-			<p id="minCaracteres">Para buscar introduce un minimo de 3 caracteres.</p>
+			<p id="minCaracteres">Para buscar introduce un mínimo de 3 carácteres.</p>
 			<input type="text" id="search" placeholder="Buscar">
 			<img src="css/loading.gif" id="loadingImg">
 		</div>

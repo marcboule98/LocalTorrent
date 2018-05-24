@@ -45,7 +45,7 @@ Class ConfiguracionCtl extends BaseCtl {
 			if(is_writable($_POST["rutaDescargas"]) && is_readable($_POST["rutaDescargas"])) {
 				$this->getConfiguracionVO()->setRutaDescargas(Utils::eliminarCaracteresEspeciales($_POST["rutaDescargas"]));
 			} else {
-				throw new Exception("La ruta inidica no tiene permisos de escritura i/o lectura.");
+				throw new Exception("La ruta indicada no tiene permisos de escritura y/o lectura.");
 			}
 		} else {
 			throw new Exception("La ruta indicada no existe!");
@@ -118,7 +118,7 @@ Class ConfiguracionCtl extends BaseCtl {
 		$connTemp = new mysqli($this->getConfiguracionVO()->getHost(), $this->getConfiguracionVO()->getUsuario(), $this->getConfiguracionVO()->getPassword(), "LocalTorrent");
 
 		if($connTemp->connect_error) {
-			throw new Exception("<b>Error al guardar la conexion:</b> " . $connTemp->connect_error);
+			throw new Exception("<b>Error al guardar la conexión:</b> " . $connTemp->connect_error);
 		} else {
 			file_put_contents(BASE_PATH . 'DataBase/DBConfig.txt', $stringDataBase);
 		}

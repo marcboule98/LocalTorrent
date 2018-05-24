@@ -46,9 +46,9 @@ function mostrarArchivosVideo(data, ruta, titulo, idTorrent){
 	$("#infoClick").show();
 
 	if(data.length > 0) {
-		$("#infoClick").text("Haz click sobre el archivo que quiera reproducir.");
+		$("#infoClick").text("Haz clic sobre el archivo que quiera reproducir.");
 	} else {
-		$("#infoClick").text("No hay ningun archivo disponible para visualizar.");
+		$("#infoClick").text("No hay ningún archivo disponible para visualizar.");
 	}
 
 	for (var i = 0; i < data.length; i++) {

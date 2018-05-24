@@ -28,7 +28,7 @@ Class ControladorAjax extends BaseCtl {
 						} else if($pagina == "eliteTorrent" && isset($_GET["pagEliteTorrent"])) {
 							echo json_encode($eliteTorrent->obtenerResultados($_GET["pagEliteTorrent"], $input));
 						} else {
-							throw new Exception("Error en la peticion!");
+							throw new Exception("Error en la petición!");
 						}
 
 						break;
@@ -203,7 +203,7 @@ Class ControladorAjax extends BaseCtl {
 
 	private function isTorrentDuplicado($torrent) {
 		if($this->getGestor()->isTorrentDuplicado($torrent->getNombre(), $torrent->getSize())) {
-			throw new Exception("El torrent que intentas añadir ya se esta descargando.");
+			throw new Exception("El torrent que intentas añadir ya se está descargando.");
 		}
 	}
 
@@ -211,7 +211,7 @@ Class ControladorAjax extends BaseCtl {
 		if(!is_dir($rutaDescargas)) {
 			throw new Exception("La ruta descargas indicada no es correcta!");
 		} else if(!is_writable($rutaDescargas) || !is_readable($rutaDescargas)) {
-			throw new Exception("La ruta no tiene permisos de escritura i/o lectura.");
+			throw new Exception("La ruta no tiene permisos de escritura y/o lectura.");
 		}
 
 		$infoT = new TorrentInfo($url);
@@ -227,7 +227,7 @@ Class ControladorAjax extends BaseCtl {
 		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 
 		if(empty($configuracionVO->getRutaDescargas()) || is_null($configuracionVO->getRutaDescargas())) {
-			throw new Exception("La ruta de descargas no puede estar vacia!");
+			throw new Exception("La ruta de descargas no puede estar vacía!");
 		}
 	}
 

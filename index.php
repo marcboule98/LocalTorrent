@@ -18,17 +18,17 @@ $ctl = new LoginCtl();
 				<h1>Bienvenido - LocalTorrent</h1>
 				<div class="groupInput">
 					<label>Nombre</label>
-					<p id="nombreVacioLogin">El campo no puede estar vacio</p>
+					<p id="nombreVacioLogin">El campo no puede estar vacío</p>
 					<input type="text" name="nombre" id="nombreLogin" placeholder="Nombre"><br>
 				</div>
 
 				<div class="groupInput">
 					<label>Contraseña</label>
-					<p id="passwordVacioLogin">El campo no puede estar vacio</p>
+					<p id="passwordVacioLogin">El campo no puede estar vacío</p>
 					<input type="password" name="password" id="passwordLogin" placeholder="Contraseña"><br>
 				</div>
 
-				<input type="submit" name="login" value="Iniciar Sesion"><br>
+				<input type="submit" name="login" value="Iniciar SesiÓn"><br>
 				<p><a href="#" id="registrar">Aún no tengo usuario.</a></p>
 			</form>
 		</div>
