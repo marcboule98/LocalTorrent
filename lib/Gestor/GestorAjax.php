@@ -28,5 +28,9 @@ Class GestorAjax extends BaseGestor {
 	public function obtenerSizeDescargasActivas() {
 		return $this->getGestorTorrent()->obtenerSizeDescargasActivas();
 	}
+
+	public function isTorrentDuplicado($nombre, $size) {
+		return $this->getGestorTorrent()->isTorrentDuplicado($nombre, $size);
+	}
 }
 ?>

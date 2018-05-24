@@ -39,6 +39,7 @@ Class ControladorAjax extends BaseCtl {
 
 						$this->isEspacioDisponible($_GET["url"], $configuracionVO->getRutaDescargas());
 						$this->guardarTorrentTemp($_GET["url"]);
+						$this->isTorrentDuplicado($torrent);
 
 						$transmission = $this->getTransmissionObject($configuracionVO);
 
@@ -198,6 +199,12 @@ Class ControladorAjax extends BaseCtl {
 		$valueObject->setImagen(Utils::cnvUrlSpaces20($_GET["img"]));
 
 		return $valueObject;
+	}
+
+	private function isTorrentDuplicado($torrent) {
+		if($this->getGestor()->isTorrentDuplicado($torrent["nombre"], $torrent["size"])) {
+			throw new Exception("El torrent que intentas añadir ya se esta descargando");
+		}
 	}
 
 	private function isEspacioDisponible($url, $rutaDescargas) {

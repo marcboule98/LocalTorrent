@@ -139,5 +139,18 @@ Class TorrentDao {
         return $ret;
 
     }
+
+    public function isTorrentDuplicado($conn, $nombre, $size) {
+        $ret = false;
+        $sql "SELECT count(idTorrent) as contador FROM Torrent WHERE nombre = '". $nombre ."' AND size = '". $size ."' ";
+
+        if($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()) {
+                $ret = ($row["contador"] > 0 ? true : false);
+            }
+        }
+
+        return $ret;
+    }
 }
 ?>

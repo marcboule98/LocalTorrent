@@ -6,11 +6,11 @@ Class ContenidoCtl extends BaseCtl {
 
 	public function __construct() {
 		try {
-			$this->descargasFinalizadas = $this->obtenerDescargasFinalizadas();
-
 			if(isset($_POST["eliminarTorrent"])) {
 				$this->getGestor()->eliminarTorrent($_POST["idTorrent"], $_POST["rutaDescarga"]);
 			}
+
+			$this->descargasFinalizadas = $this->obtenerDescargasFinalizadas();
 		} catch (Exception $e) {
 			$this->errors[] = $e->getMessage();
 		}

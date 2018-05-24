@@ -45,5 +45,9 @@ Class GestorTorrent extends BaseGestor {
 	public function obtenerSizeDescargasActivas() {
 		return $this->getTorrentDao()->obtenerSizeDescargasActivas($this->getConexion());
 	}
+
+	public function isTorrentDuplicado($nombre, $size) {
+		return $this->getTorrentDao()->isTorrentDuplicado($this->getConexion(), $nombre, $size);
+	}
 }
 ?>
