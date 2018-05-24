@@ -1,7 +1,7 @@
 <?php 
 require_once 'lib/lib.php'; 
 $ctl = new ContenidoCtl();
-$resultado = $ctl->obtenerDescargasFinalizadas();
+$resultado = $ctl->getDescargasFinalizadas();
 ?>
 
 <!DOCTYPE html>

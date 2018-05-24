@@ -33,18 +33,14 @@ Class ControladorAjax extends BaseCtl {
 
 						break;
 					case DESCARGAR_TORRENT:
-						$this->isEspacioDisponible($_GET["url"]);
-						$this->guardarTorrentTemp($_GET["url"]);
-
 						$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 						$torrent = $this->parseTorrent();
-
-						$transmission = $this->getTransmissionObject($configuracionVO);
 						$rutaDescargas = $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent();
 
-						if(!is_dir($rutaDescargas)) {
-							mkdir($rutaDescargas, 0777, true);
-						}
+						$this->isEspacioDisponible($_GET["url"], $rutaDescargas);
+						$this->guardarTorrentTemp($_GET["url"]);
+
+						$transmission = $this->getTransmissionObject($configuracionVO);
 
 						$response = $transmission->getClient()->call('torrent-add', array(
 						    'filename' => $this->getPathTorrentTemp(),
@@ -204,11 +200,18 @@ Class ControladorAjax extends BaseCtl {
 		return $valueObject;
 	}
 
-	private function isEspacioDisponible($url) {
+	private function isEspacioDisponible($url, $rutaDescargas) {
+		if(!is_dir($rutaDescargas)) {
+			if(!mkdir($rutaDescargas, 0777, true)) {
+				throw new Exception("No se puede crear la carpeta de descargas.");
+			}
+		}
+
 		$infoT = new TorrentInfo($url);
 		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
+		$totalSize = $this->getGestor()->obtenerSizeDescargasActivas() + $infoT->size();
 
-		if ($infoT->size() > disk_free_space($configuracionVO->getRutaDescargas())) {
+		if ($totalSize > disk_free_space($configuracionVO->getRutaDescargas())) {
 			throw new Exception("No hay espacio disponible en el disco!");
 		}
 	}
@@ -256,7 +259,7 @@ Class ControladorAjax extends BaseCtl {
 	}
 
 	private function extensionVideo($ruta, &$arrayRutasBuenas){
-		$tipos = array("mp4", "mkv", "mpeg", "mpg", "webm", "ogg", "mov");
+		$tipos = array("mp4", "mpeg", "mpg", "webm", "ogg", "mov");
 
 		if(!is_dir($ruta)){
 			$tipo = pathinfo($ruta);

@@ -41,5 +41,9 @@ Class GestorTorrent extends BaseGestor {
 			}
 		}
 	}
+
+	public function obtenerSizeDescargasActivas() {
+		return $this->getTorrentDao()->obtenerSizeDescargasActivas($this->getConexion());
+	}
 }
 ?>

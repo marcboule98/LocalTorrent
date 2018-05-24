@@ -123,5 +123,21 @@ Class TorrentDao {
 
         return $ret;
     }
+
+    public function obtenerSizeDescargasActivas($conn) {
+        $ret = 0;
+        $sql = "SELECT (sum(size) / 1000) as size FROM Torrent WHERE finalizado = 0";
+
+        $result = $conn->query($sql);
+
+        if($result->num_rows > 0) {
+            if($row = $result->fetch_assoc()) {
+                $ret = $row["size"];
+            }
+        }
+
+        return $ret;
+
+    }
 }
 ?>

@@ -49,7 +49,10 @@ function mejorTorrent(input){
 			mostrarTorrents(data["MejorTorrent"]);
 			mostrarInfo(data["info"]);
 		},
-		error: function(data) {}
+		error: function(data) {
+			$("#loadingImg").hide();
+			cancelarAjax();
+		}
 	});	
 }
 
@@ -82,7 +85,10 @@ function eliteTorrent(input, numPagina) {
 				$("#loadingImg").hide();
 			}
 		},
-		error: function(data) {}
+		error: function(data) {
+			$("#loadingImg").hide();
+			cancelarAjax();
+		}
 	});
 }
 
@@ -122,7 +128,10 @@ function descargarTorrent(url, nombre, idioma, calidad, size, img) {
 			mostrarInfo(data["info"]);
 			$("#loadingImg").hide();
 		},
-		error: function(data) {}
+		error: function(data) {
+			$("#loadingImg").hide();
+			cancelarAjax();
+		}
 	});	
 }
 

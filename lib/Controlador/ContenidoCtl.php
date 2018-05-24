@@ -2,9 +2,12 @@
 Class ContenidoCtl extends BaseCtl {
 
 	private $gestor = null;
+	private $descargasFinalizadas = null;
 
 	public function __construct() {
 		try {
+			$this->descargasFinalizadas = $this->obtenerDescargasFinalizadas();
+
 			if(isset($_POST["eliminarTorrent"])) {
 				$this->getGestor()->eliminarTorrent($_POST["idTorrent"], $_POST["rutaDescarga"]);
 			}
@@ -21,8 +24,12 @@ Class ContenidoCtl extends BaseCtl {
 		return $this->gestor;
 	}
 
-	public function obtenerDescargasFinalizadas(){
+	private function obtenerDescargasFinalizadas(){
 		return $this->getGestor()->obtenerDescargasFinalizadas();
+	}
+
+	public function getDescargasFinalizadas() {
+		return $this->descargasFinalizadas;
 	}
 
 }

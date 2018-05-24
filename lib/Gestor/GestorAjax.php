@@ -24,5 +24,9 @@ Class GestorAjax extends BaseGestor {
 	public function updateTorrentsFinalizados($torrents, $transmission) {
 		$this->getGestorTorrent()->updateTorrentsFinalizados($torrents, $transmission);
 	}
+
+	public function obtenerSizeDescargasActivas() {
+		return $this->getGestorTorrent()->obtenerSizeDescargasActivas();
+	}
 }
 ?>
