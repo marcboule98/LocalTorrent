@@ -75,9 +75,9 @@ function actualizarTorrents(arrayTorrents) {
 		var tiempoEstimado = 0
 		if(arrayTorrents[i].tiempoEstimado.toString().indexOf("-") == -1){
 			if(arrayTorrents[i].tiempoEstimado >= 60) {
-				tiempoEstimado = (arrayTorrents[i].tiempoEstimado / 60) + " H";
+				tiempoEstimado = (arrayTorrents[i].tiempoEstimado / 60).toFixed(2) + " H";
 			} else {
-				tiempoEstimado = arrayTorrents[i].tiempoEstimado + " Min";
+				tiempoEstimado = arrayTorrents[i].tiempoEstimado.toFixed(2) + " Min";
 			}
 		} 
 
