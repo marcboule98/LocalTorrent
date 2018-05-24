@@ -37,7 +37,7 @@ Class ControladorAjax extends BaseCtl {
 						$torrent = $this->parseTorrent();
 						$rutaDescargas = $configuracionVO->getRutaDescargas() . "/" . $torrent->getCodigoTorrent();
 
-						$this->isEspacioDisponible($_GET["url"], $rutaDescargas);
+						$this->isEspacioDisponible($_GET["url"], $configuracionVO->getRutaDescargas());
 						$this->guardarTorrentTemp($_GET["url"]);
 
 						$transmission = $this->getTransmissionObject($configuracionVO);
@@ -202,9 +202,7 @@ Class ControladorAjax extends BaseCtl {
 
 	private function isEspacioDisponible($url, $rutaDescargas) {
 		if(!is_dir($rutaDescargas)) {
-			if(!mkdir($rutaDescargas, 0777, true)) {
-				throw new Exception("No se puede crear la carpeta de descargas.");
-			}
+			throw new Exception("La ruta descargas indicada no es correcta!");
 		}
 
 		$infoT = new TorrentInfo($url);
