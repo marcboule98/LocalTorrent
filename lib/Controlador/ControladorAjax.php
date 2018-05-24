@@ -210,6 +210,8 @@ Class ControladorAjax extends BaseCtl {
 	private function isEspacioDisponible($url, $rutaDescargas) {
 		if(!is_dir($rutaDescargas)) {
 			throw new Exception("La ruta descargas indicada no es correcta!");
+		} else if(!is_writable($rutaDescargas) && !is_readable($rutaDescargas)) {
+			throw new Exception("La ruta no tiene permisos de escritura i/o lectura.");
 		}
 
 		$infoT = new TorrentInfo($url);
