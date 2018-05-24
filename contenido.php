@@ -16,7 +16,7 @@ $resultado = $ctl->getDescargasFinalizadas();
 
 	<div id="openModal" class="modalDialog">
 		<div>
-			<a href="#" title="Cerrar" class="close" onclick="pausarVideo()">X</a>
+			<a href="#" title="Cerrar" class="close" onclick="eliminarVideo()">X</a>
 			<h2 id="tituloPelicula"></h2>
 			<p id="infoClick">Haz click sobre el archivo que quiera reproducir.</p>
 			<ul id="listaVideos"></ul>
