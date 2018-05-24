@@ -142,11 +142,15 @@ Class TorrentDao {
 
     public function isTorrentDuplicado($conn, $nombre, $size) {
         $ret = false;
-        $sql = "SELECT count(idTorrent) as contador FROM Torrent WHERE nombre = '". $nombre ."' AND size = '". $size ."' ";
+
+        $nombre = implode("|", explode(" ", $nombre));
+        $sql = "SELECT count(idTorrent) as contador FROM Torrent WHERE nombre REGEXP '". $nombre ."' AND size = '". $size ."' AND finalizado = 0";
+
+        $result = $conn->query($sql);
 
         if($result->num_rows > 0) {
             if($row = $result->fetch_assoc()) {
-                $ret = ($row["contador"] > 0 ? true : false);
+                $ret = (intval($row["contador"]) > 0 ? true : false);
             }
         }
 
