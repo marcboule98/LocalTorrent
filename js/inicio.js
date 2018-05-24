@@ -73,11 +73,15 @@ function actualizarTorrents(arrayTorrents) {
 
 	for (var i = 0; i < arrayTorrents.length; i++) {
 		var tiempoEstimado = 0
-		if(arrayTorrents[i].tiempoEstimado.toString().indexOf("-") == -1){
-			if(arrayTorrents[i].tiempoEstimado >= 60) {
-				tiempoEstimado = (arrayTorrents[i].tiempoEstimado / 60).toFixed(2) + " H";
+		var tempTiempo = arrayTorrents[i].tiempoEstimado;
+
+		if(tempTiempo.toString().indexOf("-") == -1){
+			if(tempTiempo >= 3600) {
+				tiempoEstimado = (tempTiempo / 3600).toFixed(2) + " H";
+			} else if(tempTiempo >= 60) {
+				tiempoEstimado = (tempTiempo / 60).toFixed(2) + " Min";
 			} else {
-				tiempoEstimado = arrayTorrents[i].tiempoEstimado.toFixed(2) + " Min";
+				tiempoEstimado = tempTiempo + " Seg";
 			}
 		} 
 
