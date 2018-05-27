@@ -3,11 +3,11 @@ Requisitos LocalTorrent
 
 1. Servidor Web
 2. Tranmission [Pagina Oficial](https://transmissionbt.com/download/)
-  - Windows / MacOs
+  - **Windows / MacOs**
     - Instalar Transmission
     - En configuración / preferencias habilitar el acceso remoto.
     ![Ajustes Transmission](https://i.imgur.com/PeHvR6S.png "Ajustes Transmission")
-  1. Linux
+  - **Linux**
     - Instalar el servicio de Transmission
       - sudo apt-get update
       - sudo apt-get install transmission-daemon
