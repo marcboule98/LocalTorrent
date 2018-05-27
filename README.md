@@ -1,7 +1,9 @@
 # LocalTorrent
 Requisitos LocalTorrent
 
-1. Servidor Web
+1. Servidor Web (PHP, Mysql)
+  - En la carpeta lib/DataBase se encuentran dos archivos: BaseScript.sql, el cual hay que ejecutar para crear la base de datos.
+  - Por otro lado esta el archivo DBConfig.txt el cual es la configuración de la base de datos.
 2. Tranmission [Pagina Oficial](https://transmissionbt.com/download/)
   - **Windows / MacOs**
     - Instalar Transmission
