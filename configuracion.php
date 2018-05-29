@@ -21,13 +21,13 @@ $ctl = new ConfiguracionCtl();
 				<input type="text" name="rutaDescargas" placeholder="Ruta Descargas" value="<?php echo $ctl->getConfiguracionVO()->getRutaDescargas(); ?>"><br>
 			</div>
 
-			<label class="customCheckBox">
+			<label class="customCheckBox" style="display: none;">
 	  			<input type="checkbox" name="recibirEmailFinalizados" value="1" <?php echo ($ctl->getConfiguracionVO()->getRecibirEmailFinalizados() == 1 ? 'checked="checked"' : ''); ?>>
 	  			<span class="customCheck"><i class="fa fa-check"></i></span>
 	  			<p>Recibir un email cuando las descargas finalicen.</p>
 			</label>
 
-	  		<br><h2>Configuración Base de Datos</h2>
+	  		<h2>Configuración Base de Datos</h2>
 
 	  		<div class="groupInput">
 	  			<label>Host</label>
