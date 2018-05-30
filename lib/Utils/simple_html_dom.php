@@ -33,9 +33,6 @@
  * @author S.C. Chen <me578022@gmail.com>
  * @author John Schlick
  * @author Rus Carroll
- * @version 1.5 ($Rev: 196 $)
- * @package PlaceLocalInclude
- * @subpackage simple_html_dom
  */
 
 /**

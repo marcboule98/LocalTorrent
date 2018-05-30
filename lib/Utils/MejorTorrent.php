@@ -1,12 +1,29 @@
 <?php
+/**
+ * Clase MejorTorrent donde obtenemos todo el contenido de la pagina web.
+ * @author Jose Lorenzo
+ */
 Class MejorTorrent {
 
+	/**
+	 * Constructor de la clase MejorTorrent
+	 */
 	public function __construct() { }
 
+	/**
+	 * Obtenemos los torrents en base a un nombre
+	 * @param String $idioma
+	 * @return Array
+	 */
 	public function obtenerTorrents($nombre) {
 		return $this->parseTorrents($nombre);
 	}
 	
+	/**
+	 * Parseamos los torrents de la web en base a un nombre.
+	 * @param String $nombre
+	 * @return Array
+	 */
 	private function parseTorrents($nombre) {
 		$ret = array("MejorTorrent" => array());
 		$url = 'http://www.mejortorrent.com/secciones.php?sec=buscador&valor=' . $nombre;
@@ -36,6 +53,11 @@ Class MejorTorrent {
 		return $ret;
 	}
 
+	/**
+	 * Obtenemos unos parametros en base a una url.
+	 * @param String $prevUrl
+	 * @return Array
+	 */
 	private function obtenerUrlBuena($prevUrl) {
 		$html = file_get_html($prevUrl);
 		$info = array("size" => "", "link" => "", "img" => "");

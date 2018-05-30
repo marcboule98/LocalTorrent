@@ -1,17 +1,51 @@
 <?php
+/**
+ * Clase BaseGestor que controla a todos los gestores de l'aplicacion
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class BaseGestor {
 
+	/**
+	 * Host de la base de datos
+	 */
 	private $host;
+	/**
+	 * Usuario de la base de datos
+	 */
 	private $usuario;
+	/**
+	 * Password de la base de datos
+	 */
 	private $password;
+	/**
+	 * Conexion a la base de datos
+	 */
 	private $conn = null;
 	// Gestors
+	/**
+	 * Gestor Configuracion
+	 */
 	private $gestorConfiguracion = null;
+	/**
+	 * GestorTorrent
+	 */
 	private $gestorTorrent = null;
+	/**
+	 * GestorAjax
+	 */
 	private $gestorAjax = null;
+	/**
+	 * GestorContenido
+	 */
 	private $gestorContenido = null;
 	// Daos
+	/**
+	 * ConfiguracionDao
+	 */
 	private $configuracionDao = null;
+	/**
+	 * TorrentDao
+	 */
 	private $torrentDao = null;
 
 	public function __construct() {
@@ -70,6 +104,9 @@ Class BaseGestor {
 		return $this->conn;
 	}
 
+	/**
+	 * Parseamos el archivo de configuracion y comprobamos que los datos sean correctos.
+	 */
 	private function parseConexion() {
 		$fileUrl = BASE_PATH . 'DataBase/DBConfig.txt';
 		
@@ -103,10 +140,18 @@ Class BaseGestor {
 		}
 	}
 
+	/**
+	 * Obtenemos las descargas activas en base al idUsuario
+	 * @return String
+	 */
 	public function getDescargasActivas() {
 		return $this->getTorrentDao()->getDescargasActivas($this->getConexion(), $_SESSION["idUsuario"]);
 	}
 
+	/**
+	 * Obtenemos las descargas finalizadas en base al idUsuario
+	 * @return String
+	 */
 	public function getDescargasFinalizadas() {
 		return $this->getTorrentDao()->getDescargasFinalizadas($this->getConexion(), $_SESSION["idUsuario"]);
 	}

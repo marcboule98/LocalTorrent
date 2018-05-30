@@ -1,4 +1,8 @@
 <?php 
+/**
+ * Clase ValueObject de Torrent
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class TorrentVO {
 	private $idTorrent;
 	private $idUsuario;

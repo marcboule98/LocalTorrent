@@ -3,10 +3,20 @@ require_once BASE_PATH.'/../includes/vendor/autoload.php';
 use Transmission\Client;
 use Transmission\Transmission;
 
+/**
+ * Clase BaseCtl que controla todas las peticiones ajax.
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class ControladorAjax extends BaseCtl {
 	
+	/**
+	 * Gestor Ajax
+	 */
 	private $gestor = null;
 
+	/**
+	 * Constructor de la clase ControladorAjax, aqui controlamos todas las peticiones Ajax.
+	 */
 	public function __construct(){
 		try{
 			if (isset($_GET[PETICION_AJAX_KEY]) && !empty($_GET[PETICION_AJAX_KEY])) {
@@ -136,6 +146,10 @@ Class ControladorAjax extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Obtenemos el GestorAjax
+	 * @return BaseGestor
+	 */
 	private function getGestor() {
 		if(is_null($this->gestor)) {
 			$this->gestor = new GestorAjax();
@@ -144,6 +158,10 @@ Class ControladorAjax extends BaseCtl {
 		return $this->gestor;
 	}
 
+	/**
+	 * Obtener todos los torrents de un usuario.
+	 * @return Array
+	 */
 	private function getTorrentsCliente() {
 		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 		$transmission = $this->getTransmissionObject($configuracionVO);
@@ -174,10 +192,19 @@ Class ControladorAjax extends BaseCtl {
 		return $torrents;
 	}
 
+	/**
+	 * Actualizamos los torrents finalizados de la base de datos y los eliminamos del Transmission
+	 * @param Array $torrents
+	 * @param TransmissionObject $transmission
+	 */
 	private function updateTorrentsFinalizados($torrents, $transmission) {
 		$this->getGestor()->updateTorrentsFinalizados($torrents, $transmission);
 	}
 
+	/**
+	 * Obtenemos el objecto Transmission
+	 * @return TransmissionObject $transmission
+	 */
 	private function getTransmissionObject($configuracionVO) {
 		$transmission = new Transmission($configuracionVO->getTransmissionHost(), $configuracionVO->getTransmissionPuerto());
 		$client = new Client();
@@ -187,6 +214,10 @@ Class ControladorAjax extends BaseCtl {
 		return $transmission;
 	}
 
+	/**
+	 * Parseamos el torrent por $_GET y lo ponemos en el objecto TorrentVO
+	 * @param TorrentVO $valueObject
+	 */
 	private function parseTorrent() {
 		$valueObject = new TorrentVO();
 
@@ -201,12 +232,21 @@ Class ControladorAjax extends BaseCtl {
 		return $valueObject;
 	}
 
+	/**
+	 * Miramos si el torrent esta duplicado.
+	 * @param TorrentVO $torrent
+	 */
 	private function isTorrentDuplicado($torrent) {
 		if($this->getGestor()->isTorrentDuplicado($torrent->getNombre(), $torrent->getSize())) {
 			throw new Exception("El torrent que intentas añadir ya se está descargando.");
 		}
 	}
 
+	/**
+	 * Miramos si hay espacio disponible en el disco.
+	 * @param String $url
+	 * @param String $rutaDescargas
+	 */
 	private function isEspacioDisponible($url, $rutaDescargas) {
 		if(!is_dir($rutaDescargas)) {
 			throw new Exception("La ruta descargas indicada no es correcta!");
@@ -223,6 +263,9 @@ Class ControladorAjax extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Miramos si la rutaDescarga de ConfiguracionVO esta configurada
+	 */
 	private function isRutaDescargasConfigurado() {
 		$configuracionVO = $this->getGestor()->loadConfiguracionVO();
 
@@ -231,19 +274,34 @@ Class ControladorAjax extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Guardamos temporalmente un Torrent en el disco local.
+	 */
 	private function guardarTorrentTemp($rutaTorrent) {
 		file_put_contents(BASE_PATH . "tmpTorrent.torrent", fopen(Utils::cnvUrlSpaces20($rutaTorrent), 'r'));
 		chmod(BASE_PATH . "tmpTorrent.torrent", 0777);
 	}
 
+	/**
+	 * Eliminamos el Torrent guardado temporalmente.
+	 */
 	private function eliminarTorrentTemp() {
 		unlink(BASE_PATH . "tmpTorrent.torrent");
 	}
 
+	/**
+	 * Obtenemos la ruta del Torrent temporal.
+	 * @return String
+	 */
 	private function getPathTorrentTemp() {
 		return BASE_PATH . "tmpTorrent.torrent";
 	}
 
+	/**
+	 * Obtenemos todos los archivos de forma recusiva de una ruta.
+	 * @param String $dir
+	 * @param Array $arrayRutasBuenas
+	 */
 	private function buscarEnDirectorio($dir, &$arrayRutasBuenas){
 	    $ffs = scandir($dir);
 
@@ -265,6 +323,11 @@ Class ControladorAjax extends BaseCtl {
 	    }
 	}
 
+	/**
+	 * Miramos si la ruta del archivo tiene una extension valida.
+	 * @param String $dir
+	 * @param Array $arrayRutasBuenas
+	 */
 	private function extensionVideo($ruta, &$arrayRutasBuenas){
 		$tipos = array("mp4", "mpeg", "mpg", "webm", "ogg", "mov");
 

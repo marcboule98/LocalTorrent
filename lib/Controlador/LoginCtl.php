@@ -1,6 +1,13 @@
 <?php
+/**
+ * Clase LoginCtl que controla la vista.
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class LoginCtl extends BaseCtl {
 
+	/**
+	 * Constructor de la clase NuevoCtl
+	 */
 	public function __construct() {
 		try {
 			if(isset($_SESSION["idUsuario"])) {
@@ -15,6 +22,9 @@ Class LoginCtl extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Controlar login del usuario
+	 */
 	private function login() {
 		$nombre = (isset($_POST["nombre"]) ? $_POST["nombre"] : "");
 		$password = (isset($_POST["password"]) ? $_POST["password"] : "");
@@ -33,6 +43,9 @@ Class LoginCtl extends BaseCtl {
     	}
 	}
 
+	/**
+	 * Controlar registro del usuario
+	 */
 	private function registro() {
 		$nombre = (isset($_POST["nombre"]) ? $_POST["nombre"] : "");
 		$email = (isset($_POST["email"]) ? $_POST["email"] : "");
@@ -64,6 +77,10 @@ Class LoginCtl extends BaseCtl {
     	}
 	}
 
+	/**
+	 * Obtenemos la conexion en la base de datos del archivo de configuracion.
+	 * @return ConnMysql
+	 */
 	private function getConexion() {
 		$fileUrl = 'lib/DataBase/DBConfig.txt';
 		$conn = null;

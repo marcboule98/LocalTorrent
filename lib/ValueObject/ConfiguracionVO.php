@@ -1,4 +1,8 @@
 <?php
+/**
+ * Clase ValueObject de Configuracion
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class ConfiguracionVO {
 	
 	private $idUsuario;

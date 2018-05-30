@@ -1,16 +1,7 @@
 <?php
 /**
  * Random user agent creator
- * @since Sep 4, 2011
- * @version 1.0
- * @link http://360percents.com/
  * @author Luka Pušić <pusic93@gmail.com>
- */
-
-/**
- * Sources:
- * http://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_table
- * http://statowl.com/operating_system_market_share_by_os_version.php
  */
 function chooseRandomBrowserAndOS() {
     $frequencies = array(

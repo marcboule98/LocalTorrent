@@ -3,11 +3,18 @@ require_once BASE_PATH.'/../includes/vendor/autoload.php';
 use Transmission\Client;
 use Transmission\Transmission;
 
+/**
+ * Clase ConfiguracionCtl que controla la vista.
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class ConfiguracionCtl extends BaseCtl {
 
 	private $configuracionVO = null;
 	private $gestor = null;
 
+	/**
+	 * Constructor de la clase ConfiguracionCtl
+	 */
 	public function __construct() {
 		try {
 			$this->getConfiguracionVO();
@@ -22,6 +29,10 @@ Class ConfiguracionCtl extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Obtenemos la ConfiguracionVO
+	 * @return ConfiguracionVO
+	 */
 	public function getConfiguracionVO() {
 		if(is_null($this->configuracionVO)) {
 			$this->configuracionVO = $this->getGestor()->loadObject();
@@ -30,6 +41,10 @@ Class ConfiguracionCtl extends BaseCtl {
 		return $this->configuracionVO;
 	}
 
+	/**
+	 * Obtenemos el GestorConfiguracion
+	 * @return GestorConfiguracion
+	 */
 	private function getGestor() {
 		if(is_null($this->gestor)) {
 			$this->gestor = new GestorConfiguracion();
@@ -38,6 +53,9 @@ Class ConfiguracionCtl extends BaseCtl {
 		return $this->gestor;
 	}
 
+	/**
+	 * Parseamos el formulario del usuario y lo ponemos en el ConfiguracionVO
+	 */
 	private function parseValueObject() {
 		$this->getConfiguracionVO()->setIdUsuario($_SESSION["idUsuario"]);
 		
@@ -62,6 +80,9 @@ Class ConfiguracionCtl extends BaseCtl {
 		$this->saveTransmission();
 	}
 
+	/**
+	 * Parseamos la configuracion Transmission del formulario.
+	 */
 	private function parseTransmission() {
 		if(isset($_POST["transmissionHost"])) {
 			$this->getConfiguracionVO()->setTransmissionHost(Utils::eliminarCaracteresEspeciales($_POST["transmissionHost"]));
@@ -88,6 +109,9 @@ Class ConfiguracionCtl extends BaseCtl {
 		$transmission->all();
 	}
 
+	/**
+	 * Guardamos la configuracion Transmission el cliente.
+	 */
 	private function saveTransmission() {
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
@@ -98,6 +122,9 @@ Class ConfiguracionCtl extends BaseCtl {
 		$session->save();
 	}
 
+	/**
+	 * Parseamos la base de datos del formulario.
+	 */
 	private function parseDatabase() {
 		if(isset($_POST["host"])) {
 			$this->getConfiguracionVO()->setHost(Utils::eliminarCaracteresEspeciales($_POST["host"]));

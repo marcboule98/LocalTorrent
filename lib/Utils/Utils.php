@@ -1,4 +1,8 @@
 <?php
+/**
+ * Clase con funciones utiles para el proyecto.
+ * @author Jose Lorenzo, Marc Boule
+ */
 class Utils {
 
 	/**

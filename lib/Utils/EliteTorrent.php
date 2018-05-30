@@ -1,8 +1,20 @@
 <?php
+/**
+ * Clase EliteTorrent donde obtenemos todo el contenido de la pagina web.
+ * @author Jose Lorenzo
+ */
 Class EliteTorrent {
 
+	/**
+	 * Constructor de la clase EliteTorrent
+	 */
 	public function __construct() { }
 
+	/**
+	 * Obtenemos el idioma en base a una string.
+	 * @param String $idioma
+	 * @return String
+	 */
 	private function obtenerIdioma($idioma){
 		if (strpos($idioma, "Español Latino") !== false) {
 			return "ESPL";
@@ -17,6 +29,11 @@ Class EliteTorrent {
 		return "-";
 	}
 
+	/**
+	 * Obtenemos los numeros de pagines en base a un nombre.
+	 * @param String $nombre
+	 * @return String
+	 */
 	public function obtenerNpaginas($nombre){
 		$html = file_get_html('https://www.elitetorrent.biz/?s='.$nombre);
 		$totalPaginas = 1;
@@ -29,6 +46,12 @@ Class EliteTorrent {
 		return $totalPaginas;
 	}
 
+	/**
+	 * Obtenemos los resultados en base al numero de pagina y un nombre.
+	 * @param String $numPag
+	 * @param String $nombre
+	 * @return Array
+	 */
 	public function obtenerResultados($numPag, $nombre){
 		$ret = array("EliteTorrent" => array());
 		$url = 'https://www.elitetorrent.biz/page/'.$numPag.'/?s=' . $nombre;

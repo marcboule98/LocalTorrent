@@ -58,12 +58,6 @@
  * </code>
  *
  * @author   Adrien Gibrat <adrien.gibrat@gmail.com>
- * @tester   Jeong, Anton, dokcharlie, official testers ;) Thanks for your precious feedback
- * @copyleft 2010 - Just use it!
- *
- * @license  http://www.gnu.org/licenses/gpl.html GNU General Public License version 3
- *
- * @version  0.0.3
  */
 class TorrentInfo
 {

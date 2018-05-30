@@ -1,10 +1,21 @@
 <?php
+/**
+ * Clase GestorConfiguracion que controla la gestion de la configuracion
+ * @author Jose Lorenzo, Marc Boule
+ */
 Class GestorConfiguracion extends BaseGestor {
 
+	/**
+	 * Constructor de la clase GestorContenido
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Cargamos el objecto ConfiguracionVO y lo rellenamos tanto en base de datos como en el archivo de la BBDD.
+	 * @return ConfiguracionVO
+	 */
 	public function loadObject() {
 		$valueObject = $this->getConfiguracionDao()->loadObject($this->getConexion(), $_SESSION["idUsuario"]);
 		$fileUrl = BASE_PATH . 'DataBase/DBConfig.txt';
@@ -32,14 +43,26 @@ Class GestorConfiguracion extends BaseGestor {
 		return $valueObject;
 	}
 
+	/**
+	 * Hacemos un update en la base de datos.
+	 * @param ConfiguracionVO $valueObject
+	 */
 	public function update($valueObject) {
 		$this->getConfiguracionDao()->update($this->getConexion(), $valueObject);
 	}
 
+	/**
+	 * Hacemos un insert en la base de datos.
+	 * @param ConfiguracionVO $valueObject
+	 */
 	public function insert($valueObject) {
 		$this->getConfiguracionDao()->insert($this->getConexion(), $valueObject);
 	}
 
+	/**
+	 * En base a si la configuracion es nueva, hacemos un insert o un update.
+	 * @param ConfiguracionVO $valueObject
+	 */
 	public function save($valueObject) {
 		if($this->isNovaConfiguracio($valueObject)) {
 			$this->insert($valueObject);
@@ -48,6 +71,11 @@ Class GestorConfiguracion extends BaseGestor {
 		}
 	}
 
+	/**
+	 * Miramos en base a la configuracion si es nueva o no.
+	 * @param ConfiguracionVO $valueObject
+	 * @return Boolean
+	 */
 	public function isNovaConfiguracio($valueObject) {
 		return $this->getConfiguracionDao()->isNovaConfiguracio($this->getConexion(), $valueObject);
 	}
