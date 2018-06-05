@@ -28,7 +28,7 @@ $ctl = new LoginCtl();
 					<input type="password" name="password" id="passwordLogin" placeholder="Contraseña"><br>
 				</div>
 
-				<input type="submit" name="login" value="Iniciar SesiÓn"><br>
+				<input type="submit" name="login" value="Iniciar Sesión"><br>
 				<p><a href="#" id="registrar">Aún no tengo usuario.</a></p>
 			</form>
 		</div>
