@@ -14,7 +14,7 @@ Requisitos LocalTorrent
     - Instalar el servicio de Transmission
       - sudo apt-get update
       - sudo apt-get install transmission-daemon
-      - En el archivo de configuración '/etc/transmission-daemon/settings.json' poner las siguientes directivas.
+      - En el archivo de configuración '/etc/transmission-daemon/settings.json' poner las siguientes directivas:
         - "rpc-enabled": true
         - "umask": 000
         - "rpc-authentication-required": false
