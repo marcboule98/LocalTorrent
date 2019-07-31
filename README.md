@@ -1,6 +1,6 @@
 # LocalTorrent
 
-**Al usar LocalTorrent se descargan archivos Torrent. El usuario es el responsable de saber si estos, tienes los correspondientes derechos de autor. LocalTorrent no se hace responsable del mal uso. Ningún archivo es alojado en este servidor. Las descargas son realizadas a través del software [Transmission](https://transmissionbt.com/).
+Al usar LocalTorrent se descargan archivos Torrent. El usuario es el responsable de saber si estos, tienes los correspondientes derechos de autor. LocalTorrent no se hace responsable del mal uso. Ningún archivo es alojado en este servidor. Las descargas son realizadas a través del software [Transmission](https://transmissionbt.com/).
 
 Requisitos LocalTorrent
 
